@@ -1,15 +1,18 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f8f9fa; /* 浅灰色背景 - 少数派高级感 */
+  --background: #F8F9FA; /* 浅灰色背景 - 杂志质感 */
   --foreground: #1a1a1a;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
   --font-mono: var(--font-geist-mono);
+
+  /* 去线框化：自定义柔和阴影 */
+  --shadow-soft: 0 1px 3px 0 rgb(0 0 0 / 0.05), 0 1px 2px -1px rgb(0 0 0 / 0.03);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -22,8 +25,56 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  /* 使用更优雅的系统字体 - 少数派风格 */
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  /* 优雅的系统字体 - 杂志质感 */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* 高留白感 */
+  line-height: 1.6;
+}
+
+/* 去线框化：完全移除默认边框 */
+* {
+  border: none;
+  outline: none;
+}
+
+/* 确保输入框和交互元素保持可访问性 */
+input,
+textarea,
+button,
+select {
+  outline: none;
+}
+
+input:focus,
+textarea:focus {
+  outline: 2px solid theme('colors.zinc.900');
+  outline-offset: 2px;
+}
+
+/* 滚动条美化 - 更柔和 */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d4d4d8;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a1a1aa;
+}
+
+/* 暖色调过渡 */
+a,
+button,
+.card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }

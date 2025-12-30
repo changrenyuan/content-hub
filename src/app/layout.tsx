@@ -11,22 +11,22 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: "内容收藏站",
-    template: "%s | 内容收藏站"
+    default: "见地 (IN SIGHT)",
+    template: "%s | 见地"
   },
-  description: "收藏和分享优质内容的个人网站",
-  keywords: ["内容收藏", "工具推荐", "文章分享", "设计灵感"],
-  authors: [{ name: "内容收藏站" }],
+  description: "私人灵感策展空间 · 每一条存入的灵感都是一件被精心摆放的艺术品",
+  keywords: ["灵感", "策展", "收藏", "艺术", "美学"],
+  authors: [{ name: "见地 IN SIGHT" }],
   openGraph: {
     type: "website",
     locale: "zh_CN",
-    url: "https://content-hub.vercel.app",
-    siteName: "内容收藏站",
+    url: "https://insight.vercel.app",
+    siteName: "见地 IN SIGHT",
   },
   twitter: {
     card: "summary_large_image",
-    title: "内容收藏站",
-    description: "收藏和分享优质内容的个人网站",
+    title: "见地 (IN SIGHT)",
+    description: "私人灵感策展空间 · 每一条存入的灵感都是一件被精心摆放的艺术品",
   },
 };
 
