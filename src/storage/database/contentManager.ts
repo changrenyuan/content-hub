@@ -217,6 +217,16 @@ export class ContentManager {
       .limit(limit);
   }
 
+  async getPublishedContents(limit = 20): Promise<Content[]> {
+    const db = await getDb();
+    return db
+      .select()
+      .from(contents)
+      .where(eq(contents.published, true))
+      .orderBy(desc(contents.createdAt))
+      .limit(limit);
+  }
+
   async getPopularContents(limit = 10): Promise<Content[]> {
     const db = await getDb();
     return db

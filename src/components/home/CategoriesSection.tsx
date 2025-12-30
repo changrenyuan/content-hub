@@ -1,82 +1,78 @@
 import Link from 'next/link';
 import { Category } from '@/types';
+import { LayoutGrid, ArrowRight } from 'lucide-react';
 
 interface CategoriesSectionProps {
   categories: Category[];
 }
 
+const categoryColors = [
+  'bg-blue-500',
+  'bg-purple-500',
+  'bg-pink-500',
+  'bg-green-500',
+  'bg-orange-500',
+  'bg-cyan-500',
+  'bg-rose-500',
+  'bg-amber-500',
+];
+
 const CategoriesSection = ({ categories }: CategoriesSectionProps) => {
   if (categories.length === 0) return null;
 
   return (
-    <section className="bg-gray-50 py-16 sm:py-20">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-            内容分类
-          </h2>
-          <p className="mt-2 text-lg text-gray-600">
-            探索不同类型的优质内容
-          </p>
+    <section className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+      <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center gap-2">
+          <LayoutGrid className="w-5 h-5 text-blue-500" />
+          <h3 className="font-bold text-gray-900">快速分类</h3>
         </div>
+        <Link
+          href="/categories"
+          className="text-sm text-blue-600 hover:text-blue-700 font-medium flex items-center gap-1"
+        >
+          全部
+          <ArrowRight className="w-3.5 h-3.5" />
+        </Link>
+      </div>
 
-        {/* Categories Grid */}
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {categories.map((category) => (
-            <Link
-              key={category.id}
-              href={`/category/${category.slug}`}
-              className="group relative overflow-hidden rounded-xl bg-white p-6 shadow-sm transition-all hover:shadow-lg"
+      {/* Categories Grid - 4 columns on desktop, 2 on mobile */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+        {categories.slice(0, 8).map((category, index) => (
+          <Link
+            key={category.id}
+            href={`/category/${category.slug}`}
+            className="group"
+          >
+            <div
+              className={`
+                relative overflow-hidden rounded-xl p-4 transition-all duration-300
+                hover:scale-105 hover:shadow-lg cursor-pointer
+                ${categoryColors[index % categoryColors.length]}
+              `}
             >
-              {/* Category Icon and Color */}
-              <div className="mb-4">
-                {category.icon ? (
-                  <div 
-                    className="flex h-12 w-12 items-center justify-center rounded-lg text-white text-2xl"
-                    style={{ backgroundColor: category.color || '#6366f1' }}
-                  >
-                    {category.icon}
-                  </div>
-                ) : (
-                  <div 
-                    className="h-12 w-12 rounded-lg"
-                    style={{ backgroundColor: category.color || '#6366f1' }}
-                  />
+              {/* Background Pattern */}
+              <div className="absolute inset-0 opacity-20">
+                <div className="absolute top-0 right-0 w-24 h-24 bg-white rounded-full blur-2xl -translate-y-1/2 translate-x-1/2" />
+              </div>
+
+              {/* Category Content */}
+              <div className="relative z-10">
+                <div className="text-white/90 text-2xl mb-2">
+                  {category.icon || '📦'}
+                </div>
+                <h4 className="text-white font-semibold text-sm mb-1">
+                  {category.name}
+                </h4>
+                {category.description && (
+                  <p className="text-white/80 text-xs line-clamp-1">
+                    {category.description}
+                  </p>
                 )}
               </div>
-
-              {/* Category Name */}
-              <h3 className="text-lg font-semibold text-gray-900 group-hover:text-indigo-600 transition-colors">
-                {category.name}
-              </h3>
-
-              {/* Category Description */}
-              {category.description && (
-                <p className="mt-2 text-sm text-gray-600 line-clamp-2">
-                  {category.description}
-                </p>
-              )}
-
-              {/* Arrow Icon */}
-              <div className="mt-4 text-indigo-600 opacity-0 transition-opacity group-hover:opacity-100">
-                <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </div>
-            </Link>
-          ))}
-        </div>
-
-        {/* View All Link */}
-        <div className="mt-12 text-center">
-          <Link
-            href="/categories"
-            className="inline-flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-6 py-3 text-base font-medium text-gray-700 transition-colors hover:border-gray-400 hover:bg-gray-50"
-          >
-            查看所有分类
+            </div>
           </Link>
-        </div>
+        ))}
       </div>
     </section>
   );
