@@ -1,6 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Empty turbopack config to disable it and use webpack
+  turbopack: {},
+
   // Force use webpack instead of Turbopack
   webpack: (config, { isServer }) => {
     if (!isServer) {
