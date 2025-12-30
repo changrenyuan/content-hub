@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { ContentForm } from '@/components/admin/ContentForm';
+import ContentForm from '@/components/admin/ContentForm';
 import { Category } from '@/types';
 
 export default function NewContentPage() {

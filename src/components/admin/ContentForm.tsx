@@ -2,9 +2,10 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { X, Plus, Image as ImageIcon, Link as LinkIcon, Tag, Save, Eye } from 'lucide-react';
+import { X, Plus, Save, Eye } from 'lucide-react';
 import { validateUrl } from '@/lib/utils';
 import { Category, ContentFormData } from '@/types';
+import { ImageUpload } from './ImageUpload';
 
 interface ContentFormProps {
   categories: Category[];
@@ -292,19 +293,15 @@ const ContentForm = ({
             <h2 className="text-lg font-medium text-gray-900 mb-4">媒体</h2>
             
             <div className="space-y-4">
-              {/* Image URL */}
+              {/* Image Upload */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
-                  <ImageIcon className="inline h-4 w-4 mr-1" />
-                  图片链接
+                  图片
                 </label>
-                <input
-                  type="url"
-                  name="imageUrl"
+                <ImageUpload
                   value={formData.imageUrl}
-                  onChange={handleInputChange}
-                  className={`w-full rounded-lg border ${errors.imageUrl ? 'border-red-300' : 'border-gray-300'} bg-white px-3 py-2 text-sm text-gray-900 placeholder-gray-500 transition-colors focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20`}
-                  placeholder="https://example.com/image.jpg"
+                  onChange={(url) => setFormData(prev => ({ ...prev, imageUrl: url }))}
+                  onRemove={() => setFormData(prev => ({ ...prev, imageUrl: '' }))}
                 />
                 {errors.imageUrl && (
                   <p className="mt-1 text-sm text-red-600">{errors.imageUrl}</p>
@@ -314,8 +311,7 @@ const ContentForm = ({
               {/* Source URL */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
-                  <LinkIcon className="inline h-4 w-4 mr-1" />
-                  原文链接
+                  原始链接
                 </label>
                 <input
                   type="url"
@@ -338,7 +334,7 @@ const ContentForm = ({
             
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
-                内容详情
+                内容
               </label>
               <textarea
                 name="content"
@@ -346,7 +342,7 @@ const ContentForm = ({
                 onChange={handleInputChange}
                 rows={10}
                 className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 placeholder-gray-500 transition-colors focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20"
-                placeholder="输入详细内容（支持Markdown格式）"
+                placeholder="输入详细内容..."
               />
             </div>
           </div>
@@ -356,53 +352,67 @@ const ContentForm = ({
             <h2 className="text-lg font-medium text-gray-900 mb-4">设置</h2>
             
             <div className="space-y-4">
-              <div className="flex items-center">
+              {/* Featured */}
+              <div className="flex items-center gap-3">
                 <input
                   type="checkbox"
-                  id="featured"
                   name="featured"
+                  id="featured"
                   checked={formData.featured}
                   onChange={handleInputChange}
                   className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                 />
-                <label htmlFor="featured" className="ml-2 text-sm text-gray-700">
-                  设为精选内容
+                <label htmlFor="featured" className="text-sm font-medium text-gray-700">
+                  设为精选
                 </label>
               </div>
 
-              <div className="flex items-center">
+              {/* Published */}
+              <div className="flex items-center gap-3">
                 <input
                   type="checkbox"
-                  id="published"
                   name="published"
+                  id="published"
                   checked={formData.published}
                   onChange={handleInputChange}
                   className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                 />
-                <label htmlFor="published" className="ml-2 text-sm text-gray-700">
+                <label htmlFor="published" className="text-sm font-medium text-gray-700">
                   立即发布
                 </label>
               </div>
 
+              {/* Sort Order */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
-                  排序权重
+                  排序
                 </label>
                 <input
                   type="number"
                   name="sort"
                   value={formData.sort}
                   onChange={handleInputChange}
-                  min="0"
-                  className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 placeholder-gray-500 transition-colors focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20"
+                  className="w-full max-w-xs rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 transition-colors focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20"
                 />
               </div>
             </div>
           </div>
+
+          {/* Preview */}
+          {formData.imageUrl && (
+            <div className="bg-white rounded-lg p-6 shadow-sm">
+              <h2 className="text-lg font-medium text-gray-900 mb-4">预览</h2>
+              <img
+                src={formData.imageUrl}
+                alt="预览"
+                className="w-full max-w-md rounded-lg"
+              />
+            </div>
+          )}
         </form>
       </div>
     </div>
   );
 };
 
-export { ContentForm };
+export default ContentForm;
