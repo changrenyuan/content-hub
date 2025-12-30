@@ -4,6 +4,8 @@ import { FeaturedSection } from "@/components/home/FeaturedSection";
 import { CategoriesSection } from "@/components/home/CategoriesSection";
 import { RecentContents } from "@/components/home/RecentContents";
 
+export const dynamic = 'force-dynamic';
+
 export default async function Home() {
   // Fetch data for homepage
   const featuredContents = await contentManager.getFeaturedContents(6);

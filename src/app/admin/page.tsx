@@ -1,6 +1,9 @@
 import { contentManager, categoryManager, commentManager } from "@/storage/database";
 import { AdminDashboard } from "@/components/admin/AdminDashboard";
 
+// Force dynamic rendering to avoid build-time database connection issues
+export const dynamic = 'force-dynamic';
+
 export default async function AdminPage() {
   // Fetch dashboard stats
   const [allContents, allCategories, pendingComments, featuredContents] = await Promise.all([

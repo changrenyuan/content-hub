@@ -1,6 +1,8 @@
 import { contentManager } from "@/storage/database";
 import { ContentManager } from "@/components/admin/ContentManager";
 
+export const dynamic = 'force-dynamic';
+
 export default async function ContentsPage({
   searchParams,
 }: {

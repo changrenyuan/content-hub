@@ -1,7 +1,6 @@
 import { drizzle } from "drizzle-orm/node-postgres";
 import pg from "pg";
 import * as schema from "./shared/schema";
-import { ensureLoadEnv } from "../ensureLoadEnv";
 
 const MAX_RETRY_TIME = 20000; // 连接最大重试时间（毫秒）
 
@@ -12,9 +11,9 @@ let db: ReturnType<typeof drizzle> | null = null;
  * 获取数据库连接 URL
  */
 function getDbUrl(): string {
-  const url = process.env.PGDATABASE_URL || "";
+  const url = process.env.DATABASE_URL || "";
   if (!url) {
-    console.error("PGDATABASE_URL is not set");
+    console.error("DATABASE_URL is not set");
   }
   return url;
 }
@@ -25,7 +24,7 @@ function getDbUrl(): string {
 async function createPoolWithRetry(): Promise<pg.Pool> {
   const url = getDbUrl();
   if (!url) {
-    throw new Error("PGDATABASE_URL is not set");
+    throw new Error("DATABASE_URL is not set");
   }
 
   const newPool = new pg.Pool({
@@ -62,7 +61,6 @@ async function createPoolWithRetry(): Promise<pg.Pool> {
  * 获取连接池（单例）
  */
 export async function getPool(): Promise<pg.Pool> {
-  ensureLoadEnv();
   if (!pool) {
     pool = await createPoolWithRetry();
   }

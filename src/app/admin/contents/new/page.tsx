@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { categoryManager } from '@/storage/database';
 import { ContentForm } from '@/components/admin/ContentForm';
 import { Category } from '@/types';
 
@@ -14,7 +13,11 @@ export default function NewContentPage() {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const categoriesData = await categoryManager.getCategories({ includeInactive: false });
+        const response = await fetch('/api/categories?includeInactive=false');
+        if (!response.ok) {
+          throw new Error('Failed to fetch categories');
+        }
+        const categoriesData = await response.json();
         setCategories(categoriesData);
       } catch (error) {
         console.error('Failed to fetch categories:', error);
@@ -39,7 +42,7 @@ export default function NewContentPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <ContentForm 
+      <ContentForm
         categories={categories}
         onSuccess={() => router.push('/admin/contents')}
         onCancel={() => router.push('/admin/contents')}
