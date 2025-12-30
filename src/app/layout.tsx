@@ -37,7 +37,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="zh-CN" className={inter.variable}>
-      <body className="min-h-screen bg-gray-50 font-sans antialiased">
+      <body className="min-h-screen font-sans antialiased" style={{ backgroundColor: '#F5F5F7' }}>
         <div className="relative flex min-h-screen flex-col">
           <Navbar />
           <main className="flex-1">{children}</main>

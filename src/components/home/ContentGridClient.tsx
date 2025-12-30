@@ -55,7 +55,7 @@ export function ContentGridClient() {
     return (
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {[1, 2, 3, 4, 5, 6].map((i) => (
-          <div key={i} className="bg-white rounded-3xl overflow-hidden">
+          <div key={i} className="bg-white rounded-3xl overflow-hidden" style={{ boxShadow: '0 4px 24px rgba(0, 0, 0, 0.04)' }}>
             <div className="aspect-[4/5] bg-zinc-100 animate-pulse" />
             <div className="p-6 space-y-4">
               <div className="h-6 bg-zinc-200 rounded animate-pulse" />
@@ -71,8 +71,8 @@ export function ContentGridClient() {
   if (error) {
     return (
       <div className="text-center py-20">
-        <p className="text-zinc-500 mb-4 font-medium">灵感暂时离线了</p>
-        <p className="text-zinc-400 text-sm">稍后再来探访吧</p>
+        <p className="text-[#86868B] mb-4 font-medium">灵感暂时离线了</p>
+        <p className="text-[#86868B] text-sm">稍后再来探访吧</p>
       </div>
     );
   }
@@ -80,8 +80,8 @@ export function ContentGridClient() {
   if (contents.length === 0) {
     return (
       <div className="text-center py-20">
-        <p className="text-zinc-400 text-lg">空间还空着</p>
-        <p className="text-zinc-300 text-sm mt-2">收藏第一条灵感，让它入座</p>
+        <p className="text-[#86868B] text-lg">空间还空着</p>
+        <p className="text-[#86868B] text-sm mt-2">收藏第一条灵感，让它入座</p>
       </div>
     );
   }

@@ -32,8 +32,8 @@ const Navbar = () => {
             <Heart className="w-5 h-5 text-white" />
           </div>
           <div className="flex flex-col">
-            <span className="text-xl font-black tracking-tight text-zinc-900 leading-tight">见地</span>
-            <span className="text-[10px] font-medium text-zinc-400 tracking-[0.2em] hidden sm:inline">IN SIGHT</span>
+            <span className="text-xl font-black tracking-tight text-[#1D1D1F] leading-tight">见地</span>
+            <span className="text-[10px] font-medium text-[#86868B] tracking-[0.2em] hidden sm:inline">IN SIGHT</span>
           </div>
         </Link>
 
@@ -43,7 +43,7 @@ const Navbar = () => {
             <Link
               key={item.href}
               href={item.href}
-              className="px-5 py-2 text-sm font-medium text-zinc-600 transition-colors hover:text-zinc-900 hover:bg-zinc-50 rounded-full"
+              className="px-5 py-2 text-sm font-medium text-[#86868B] transition-colors hover:text-[#1D1D1F] hover:bg-zinc-50 rounded-full"
             >
               {item.label}
             </Link>
@@ -54,13 +54,13 @@ const Navbar = () => {
           {/* Search Bar */}
           <form onSubmit={handleSearch} className="hidden md:block">
             <div className="relative">
-              <Search className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-zinc-400" />
+              <Search className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[#86868B]" />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="寻觅灵感..."
-                className="w-72 rounded-full bg-zinc-100/80 py-2.5 pl-11 pr-5 text-sm text-zinc-900 placeholder:text-zinc-400 transition-all focus:outline-none focus:ring-2 focus:ring-zinc-900/10 hover:bg-zinc-100"
+                className="w-72 rounded-full bg-zinc-100/80 py-2.5 pl-11 pr-5 text-sm text-[#1D1D1F] placeholder:text-[#86868B] transition-all focus:outline-none focus:ring-2 focus:ring-[#007AFF]/20 hover:bg-zinc-100"
               />
             </div>
           </form>
@@ -68,7 +68,7 @@ const Navbar = () => {
           {/* Collect Button */}
           <Link
             href="/admin"
-            className="hidden md:block px-5 py-2.5 bg-zinc-900 text-white rounded-full text-sm font-medium hover:bg-zinc-800 transition-all hover:shadow-lg hover:shadow-zinc-900/20 hover:-translate-y-0.5"
+            className="hidden md:block px-5 py-2.5 bg-[#1D1D1F] text-white rounded-full text-sm font-medium hover:bg-black transition-all hover:shadow-lg hover:-translate-y-0.5" style={{ boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)' }}
           >
             收藏灵感
           </Link>
@@ -76,7 +76,7 @@ const Navbar = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="lg:hidden rounded-full p-2 text-zinc-600 transition-colors hover:bg-zinc-100"
+            className="lg:hidden rounded-full p-2 text-[#86868B] transition-colors hover:bg-zinc-100"
           >
             {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
@@ -89,13 +89,13 @@ const Navbar = () => {
           <div className="px-6 py-4">
             <form onSubmit={handleSearch} className="mb-4">
               <div className="relative">
-                <Search className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-zinc-400" />
+                <Search className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[#86868B]" />
                 <input
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="寻觅灵感..."
-                  className="w-full rounded-full bg-zinc-100/80 py-2.5 pl-11 pr-5 text-sm text-zinc-900 placeholder:text-zinc-400 focus:outline-none"
+                  className="w-full rounded-full bg-zinc-100/80 py-2.5 pl-11 pr-5 text-sm text-[#1D1D1F] placeholder:text-[#86868B] focus:outline-none"
                 />
               </div>
             </form>
@@ -105,7 +105,7 @@ const Navbar = () => {
                   key={item.href}
                   href={item.href}
                   onClick={() => setIsMenuOpen(false)}
-                  className="block px-4 py-3 text-base font-medium text-zinc-700 transition-colors hover:bg-zinc-50 hover:text-zinc-900 rounded-2xl"
+                  className="block px-4 py-3 text-base font-medium text-[#86868B] transition-colors hover:bg-zinc-50 hover:text-[#007AFF] rounded-2xl"
                 >
                   {item.label}
                 </Link>
@@ -115,7 +115,7 @@ const Navbar = () => {
               <Link
                 href="/admin"
                 onClick={() => setIsMenuOpen(false)}
-                className="flex items-center justify-center w-full px-5 py-3 bg-zinc-900 text-white rounded-full text-base font-medium hover:bg-zinc-800"
+                className="flex items-center justify-center w-full px-5 py-3 bg-[#1D1D1F] text-white rounded-full text-base font-medium hover:bg-black"
               >
                 收藏灵感
               </Link>

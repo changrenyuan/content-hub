@@ -54,7 +54,7 @@ export function MagazineCard({
 
   return (
     <Link href={`/content/${id}`}>
-      <article className="group bg-white rounded-3xl overflow-hidden transition-all duration-700 hover:shadow-2xl hover:shadow-zinc-200/40 hover:-translate-y-1.5">
+      <article className="group bg-white rounded-3xl overflow-hidden transition-all duration-500 hover:scale-[1.02] hover:shadow-xl" style={{ boxShadow: '0 4px 24px rgba(0, 0, 0, 0.04)' }}>
         {/* Image Section - Picture First */}
         <div className={`relative aspect-[4/5] overflow-hidden bg-gradient-to-br ${gradientClass}`}>
           {imageUrl ? (
@@ -70,18 +70,18 @@ export function MagazineCard({
           )}
 
           {/* Soft Overlay on Hover */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
           {/* Category Tag - Soft and Minimal */}
           {category && (
             <div className="absolute top-5 left-5">
-              <span className="bg-white/95 backdrop-blur-sm px-4 py-2 rounded-full text-xs font-bold text-zinc-900 shadow-soft hover:shadow-md transition-shadow">
+              <span className="bg-white/95 backdrop-blur-sm px-4 py-2 rounded-full text-xs font-semibold text-[#1D1D1F] shadow-md hover:shadow-lg transition-shadow" style={{ boxShadow: '0 2px 12px rgba(0, 0, 0, 0.06)' }}>
                 {category.name}
               </span>
             </div>
           )}
 
-          {/* Bookmark Button - Warm Interaction */}
+          {/* Bookmark Button - 小红书红点缀 */}
           <button
             onClick={(e) => {
               e.preventDefault();
@@ -91,11 +91,12 @@ export function MagazineCard({
             className={`
               absolute top-5 right-5 w-11 h-11 rounded-full bg-white/95 backdrop-blur-sm flex items-center justify-center
               transition-all duration-300 hover:scale-110
-              ${isBookmarked ? 'shadow-lg shadow-zinc-200' : 'shadow-soft'}
+              ${isBookmarked ? 'shadow-lg' : ''}
             `}
+            style={{ boxShadow: '0 2px 12px rgba(0, 0, 0, 0.06)' }}
           >
             <BookMarked
-              className={`w-4.5 h-4.5 transition-all duration-300 ${isBookmarked ? 'fill-zinc-900 text-zinc-900 scale-110' : 'text-zinc-400'}`}
+              className={`w-4.5 h-4.5 transition-all duration-300 ${isBookmarked ? 'fill-[#FE2C55] text-[#FE2C55] scale-110' : 'text-[#86868B]'}`}
             />
           </button>
         </div>
@@ -103,13 +104,13 @@ export function MagazineCard({
         {/* Content Section - High Whitespace */}
         <div className="p-7 space-y-5">
           {/* Title - Elegant Typography */}
-          <h2 className="text-lg font-bold leading-snug text-zinc-900 line-clamp-2 group-hover:text-zinc-700 transition-colors duration-300">
+          <h2 className="text-base font-semibold leading-relaxed text-[#1D1D1F] line-clamp-2 group-hover:text-[#1D1D1F] transition-colors duration-300">
             {title}
           </h2>
 
           {/* Description - Subtle and Minimal */}
           {description && (
-            <p className="text-sm text-zinc-400 line-clamp-2 leading-relaxed">
+            <p className="text-sm text-[#86868B] line-clamp-2 leading-relaxed font-normal">
               {description}
             </p>
           )}
@@ -117,26 +118,26 @@ export function MagazineCard({
           {/* Footer - Minimal and Elegant */}
           <div className="flex items-center justify-between pt-4">
             {/* Date - Minimal */}
-            <span className="text-xs text-zinc-300 font-medium">
+            <span className="text-xs text-[#86868B] font-medium tracking-wide">
               {formattedDate}
             </span>
 
             {/* Stats - Warm and Subtle */}
-            <div className="flex items-center gap-5 text-xs text-zinc-400">
+            <div className="flex items-center gap-5 text-xs text-[#86868B]">
               <button
                 onClick={(e) => {
                   e.preventDefault();
                   setIsLiked(!isLiked);
                 }}
                 title={isLiked ? "心动已记下" : "心动"}
-                className="flex items-center gap-1.5 hover:text-red-500 transition-colors duration-300 group/btn"
+                className="flex items-center gap-1.5 hover:text-[#FE2C55] transition-colors duration-300 group/btn"
               >
                 <Heart
-                  className={`w-4 h-4 transition-all duration-300 ${isLiked ? 'fill-red-500 text-red-500 scale-110' : 'group-hover/btn:scale-110'}`}
+                  className={`w-4 h-4 transition-all duration-300 ${isLiked ? 'fill-[#FE2C55] text-[#FE2C55] scale-110' : 'group-hover/btn:scale-110'}`}
                 />
                 <span className="transition-opacity duration-300">{likeCount + (isLiked ? 1 : 0)}</span>
               </button>
-              <div className="flex items-center gap-1.5 text-zinc-300">
+              <div className="flex items-center gap-1.5">
                 <Eye className="w-4 h-4" />
                 <span>{viewCount}</span>
               </div>
