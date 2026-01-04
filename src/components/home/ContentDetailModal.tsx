@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { X, Heart, Share2, Bookmark, Send, Eye } from 'lucide-react';
+import { getImageUrl } from '@/lib/imageUtils';
 
 interface ContentDetailModalProps {
   contentId: string;
@@ -48,6 +49,7 @@ export function ContentDetailModal({
   const [isLiked, setIsLiked] = useState(false);
   const [isBookmarked, setIsBookmarked] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [imageError, setImageError] = useState(false);
 
   useEffect(() => {
     if (!isOpen || !contentId) return;
@@ -155,10 +157,10 @@ export function ContentDetailModal({
               {/* 图片数组：优先使用imageUrls，没有则使用imageUrl */}
               {(() => {
                 const images = Array.isArray(content.imageUrls) && content.imageUrls.length > 0
-                  ? content.imageUrls
-                  : (content.imageUrl ? [content.imageUrl] : []);
+                  ? content.imageUrls.map(getImageUrl)
+                  : (content.imageUrl ? [getImageUrl(content.imageUrl)] : []);
 
-                if (images.length === 0) {
+                if (images.length === 0 || (images.length === 1 && !images[0])) {
                   return (
                     <div className="aspect-square bg-gradient-to-br from-zinc-100 to-zinc-200 rounded-2xl flex items-center justify-center">
                       <span className="text-9xl text-zinc-300 font-bold">
@@ -171,12 +173,22 @@ export function ContentDetailModal({
                 return (
                   <div className="relative w-full h-full flex items-center justify-center">
                     {/* 当前图片 */}
-                    <img
-                      src={images[currentImageIndex]}
-                      alt={`${content.title} - 图片 ${currentImageIndex + 1}`}
-                      className="max-w-full max-h-[85vh] object-contain rounded-xl"
-                      style={{ boxShadow: '0 10px 40px rgba(0, 0, 0, 0.08)' }}
-                    />
+                    {imageError || !images[currentImageIndex] ? (
+                      <div className="aspect-square bg-gradient-to-br from-zinc-100 to-zinc-200 rounded-2xl flex items-center justify-center">
+                        <span className="text-9xl text-zinc-300 font-bold">
+                          {content.title.charAt(0)}
+                        </span>
+                      </div>
+                    ) : (
+                      <img
+                        src={images[currentImageIndex] || ''}
+                        alt={`${content.title} - 图片 ${currentImageIndex + 1}`}
+                        className="max-w-full max-h-[85vh] object-contain rounded-xl"
+                        style={{ boxShadow: '0 10px 40px rgba(0, 0, 0, 0.08)' }}
+                        onError={() => setImageError(true)}
+                        onLoad={() => setImageError(false)}
+                      />
+                    )}
 
                     {/* 上一张按钮 */}
                     {images.length > 1 && (
@@ -239,9 +251,9 @@ export function ContentDetailModal({
               <div className="p-6 border-b border-gray-100">
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-3">
-                    {content.authorAvatar ? (
+                    {getImageUrl(content.authorAvatar) ? (
                       <img
-                        src={content.authorAvatar}
+                        src={getImageUrl(content.authorAvatar) || ''}
                         alt={content.author || '作者'}
                         className="w-10 h-10 rounded-full object-cover"
                         style={{ boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)' }}

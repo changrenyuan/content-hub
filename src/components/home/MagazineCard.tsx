@@ -2,6 +2,7 @@
 
 import { Heart, Eye, BookMarked } from 'lucide-react';
 import { useState } from 'react';
+import { getImageUrl } from '@/lib/imageUtils';
 
 interface MagazineCardProps {
   id: string;
@@ -55,7 +56,8 @@ export function MagazineCard({
     return gradients[index];
   };
 
-  const gradientClass = !imageUrl ? generateGradient(id) : '';
+  const processedImageUrl = getImageUrl(imageUrl);
+  const gradientClass = !processedImageUrl ? generateGradient(id) : '';
 
   return (
     <article
@@ -65,9 +67,9 @@ export function MagazineCard({
     >
         {/* Image Section - Picture First */}
         <div className={`relative aspect-[4/5] overflow-hidden bg-gradient-to-br ${gradientClass}`}>
-          {imageUrl ? (
+          {processedImageUrl ? (
             <img
-              src={imageUrl}
+              src={processedImageUrl}
               alt={title}
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
@@ -92,9 +94,9 @@ export function MagazineCard({
           {/* Author Avatar - Left Bottom */}
           {author && (
             <div className="absolute bottom-5 left-5">
-              {authorAvatar ? (
+              {getImageUrl(authorAvatar) ? (
                 <img
-                  src={authorAvatar}
+                  src={getImageUrl(authorAvatar) || ''}
                   alt={author}
                   className="w-8 h-8 rounded-full object-cover border-2 border-white"
                   style={{ boxShadow: '0 2px 8px rgba(0, 0, 0, 0.15)' }}
