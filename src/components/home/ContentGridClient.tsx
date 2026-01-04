@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { MagazineCard } from './MagazineCard';
+import { ContentDetailModal } from './ContentDetailModal';
 
 interface Content {
   id: string;
@@ -20,28 +21,30 @@ export function ContentGridClient() {
   const [contents, setContents] = useState<Content[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [selectedContentId, setSelectedContentId] = useState<string | null>(null);
 
   useEffect(() => {
     async function fetchContents() {
       try {
+        console.log('[ContentGridClient] 开始获取内容...');
         const response = await fetch('/api/contents');
+        console.log('[ContentGridClient] API 响应状态:', response.status);
+
         if (!response.ok) {
+          const errorData = await response.json();
+          console.error('[ContentGridClient] API 错误:', errorData);
           throw new Error('Failed to fetch contents');
         }
+
         const data = await response.json();
-        // Enhance with category data
-        const enhancedData = await Promise.all(
-          data.map(async (item: any) => {
-            const categoryResponse = await fetch(`/api/categories/${item.categoryId}`);
-            if (categoryResponse.ok) {
-              const category = await categoryResponse.json();
-              return { ...item, category };
-            }
-            return item;
-          })
-        );
-        setContents(enhancedData);
+        console.log('[ContentGridClient] 获取到的内容数量:', data.length);
+        console.log('[ContentGridClient] 内容数据:', data);
+
+        // 直接使用 API 返回的数据，不再逐个请求分类信息
+        // 这样可以避免 N+1 查询问题和可能的网络失败
+        setContents(data);
       } catch (err) {
+        console.error('[ContentGridClient] 获取内容失败:', err);
         setError(err instanceof Error ? err.message : 'Unknown error');
       } finally {
         setLoading(false);
@@ -87,20 +90,29 @@ export function ContentGridClient() {
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {contents.map((item) => (
-        <MagazineCard
-          key={item.id}
-          id={item.id}
-          title={item.title}
-          description={item.description}
-          imageUrl={item.imageUrl}
-          category={item.category}
-          viewCount={item.viewCount}
-          likeCount={item.likeCount}
-          createdAt={item.createdAt}
-        />
-      ))}
-    </div>
+    <>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {contents.map((item) => (
+          <MagazineCard
+            key={item.id}
+            id={item.id}
+            title={item.title}
+            description={item.description}
+            imageUrl={item.imageUrl}
+            category={item.category}
+            viewCount={item.viewCount}
+            likeCount={item.likeCount}
+            createdAt={item.createdAt}
+            onClick={() => setSelectedContentId(item.id)}
+          />
+        ))}
+      </div>
+
+      <ContentDetailModal
+        contentId={selectedContentId || ''}
+        isOpen={!!selectedContentId}
+        onClose={() => setSelectedContentId(null)}
+      />
+    </>
   );
 }

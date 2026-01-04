@@ -1,14 +1,15 @@
 import Link from 'next/link';
-import { 
-  FileText, 
-  Folder, 
-  MessageSquare, 
-  Eye, 
-  Heart, 
+import {
+  FileText,
+  Folder,
+  MessageSquare,
+  Eye,
+  Heart,
   TrendingUp,
   Plus,
   BarChart3,
-  Settings
+  Settings,
+  Download
 } from 'lucide-react';
 import { formatDate } from '@/lib/utils';
 
@@ -134,7 +135,7 @@ const AdminDashboard = ({
         {/* Quick Actions */}
         <div className="mt-8 bg-white rounded-xl p-6 shadow-sm">
           <h2 className="text-lg font-semibold text-gray-900 mb-4">快速操作</h2>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
             <Link
               href="/admin/contents/new"
               className="flex items-center gap-3 rounded-lg border border-gray-200 p-4 transition-colors hover:border-gray-300 hover:bg-gray-50"
@@ -162,6 +163,13 @@ const AdminDashboard = ({
             >
               <BarChart3 className="h-5 w-5 text-orange-600" />
               <span className="font-medium text-gray-900">查看统计</span>
+            </Link>
+            <Link
+              href="/admin/xiaohongshu"
+              className="flex items-center gap-3 rounded-lg border border-gray-200 p-4 transition-colors hover:border-red-300 hover:bg-red-50"
+            >
+              <Download className="h-5 w-5 text-red-600" />
+              <span className="font-medium text-gray-900">小红书同步</span>
             </Link>
           </div>
         </div>

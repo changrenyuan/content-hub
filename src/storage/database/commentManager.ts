@@ -7,7 +7,10 @@ export class CommentManager {
   async createComment(data: InsertComment): Promise<Comment> {
     const db = await getDb();
     const validated = insertCommentSchema.parse(data);
-    const [comment] = await db.insert(comments).values(validated).returning();
+    const [comment] = await db.insert(comments).values({
+      ...validated,
+      isApproved: true, // 自动审核通过
+    }).returning();
     return comment;
   }
 

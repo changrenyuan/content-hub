@@ -1,6 +1,5 @@
 'use client';
 
-import Link from 'next/link';
 import { Heart, Eye, BookMarked } from 'lucide-react';
 import { useState } from 'react';
 
@@ -15,6 +14,7 @@ interface MagazineCardProps {
   viewCount: number;
   likeCount: number;
   createdAt: Date;
+  onClick?: () => void;
 }
 
 export function MagazineCard({
@@ -26,6 +26,7 @@ export function MagazineCard({
   viewCount,
   likeCount,
   createdAt,
+  onClick,
 }: MagazineCardProps) {
   const [isLiked, setIsLiked] = useState(false);
   const [isBookmarked, setIsBookmarked] = useState(false);
@@ -53,8 +54,11 @@ export function MagazineCard({
   const gradientClass = !imageUrl ? generateGradient(id) : '';
 
   return (
-    <Link href={`/content/${id}`}>
-      <article className="group bg-white rounded-3xl overflow-hidden transition-all duration-500 hover:scale-[1.02] hover:shadow-xl" style={{ boxShadow: '0 4px 24px rgba(0, 0, 0, 0.04)' }}>
+    <article
+      className="group bg-white rounded-3xl overflow-hidden transition-all duration-500 hover:scale-[1.02] hover:shadow-xl cursor-pointer"
+      style={{ boxShadow: '0 4px 24px rgba(0, 0, 0, 0.04)' }}
+      onClick={() => onClick?.()}
+    >
         {/* Image Section - Picture First */}
         <div className={`relative aspect-[4/5] overflow-hidden bg-gradient-to-br ${gradientClass}`}>
           {imageUrl ? (
@@ -145,6 +149,5 @@ export function MagazineCard({
           </div>
         </div>
       </article>
-    </Link>
   );
 }
