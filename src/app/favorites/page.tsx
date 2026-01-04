@@ -7,7 +7,7 @@ export default function FavoritesPage() {
   return (
     <div className="min-h-screen bg-[#FAF7F2]">
       {/* Header */}
-      <div className="sticky top-0 z-40 bg-white/80 backdrop-blur-lg border-b border-[#EDE6DC]">
+      <div className="sticky top-0 z-40 bg-white/80 backdrop-blur-lg border-b border-[#E8E2DA]">
         <div className="max-w-[1800px] mx-auto px-8 py-6">
           <div className="flex items-center gap-6">
             <Link href="/" className="flex items-center gap-2 text-[#9A9A9A] hover:text-[#E86A5A] transition-colors">
@@ -15,7 +15,7 @@ export default function FavoritesPage() {
               <span className="text-sm font-medium">返回客厅</span>
             </Link>
             <div>
-              <h1 className="text-2xl font-bold text-[#2F2F2F]">心动</h1>
+              <h1 className="text-2xl font-bold text-[black]">心动</h1>
               <p className="text-[#9A9A9A] text-sm mt-1">你喜欢的所有内容</p>
             </div>
           </div>
@@ -28,7 +28,7 @@ export default function FavoritesPage() {
           <div className="w-24 h-24 rounded-full bg-gradient-to-br from-[#F4DADA] to-[#F2C94C] flex items-center justify-center mx-auto mb-6">
             <Heart className="w-12 h-12 text-[#E86A5A]" />
           </div>
-          <h2 className="text-2xl font-bold text-[#2F2F2F] mb-3">还没有心动的内容</h2>
+          <h2 className="text-2xl font-bold text-[black] mb-3">还没有心动的内容</h2>
           <p className="text-[#9A9A9A] mb-8">去客厅逛逛，发现你喜欢的灵感吧</p>
           <Link
             href="/"

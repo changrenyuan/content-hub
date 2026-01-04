@@ -41,8 +41,8 @@ export function RightSidebar() {
         {/* Trending Section - Magazine Quality */}
         <div className="bg-white rounded-3xl p-7" style={{ boxShadow: '0 2px 12px rgba(0, 0, 0, 0.04)' }}>
           <div className="flex items-center gap-2 mb-6">
-            <TrendingUp className="w-5 h-5 text-[#2F2F2F]" />
-            <h3 className="font-semibold text-[#2F2F2F] text-base">当下焦点</h3>
+            <TrendingUp className="w-5 h-5 text-[black]" />
+            <h3 className="font-semibold text-[black] text-base">当下焦点</h3>
           </div>
 
           <div className="space-y-5">
@@ -67,7 +67,7 @@ export function RightSidebar() {
                     <span className={`
                       flex-shrink-0 w-7 h-7 rounded-lg flex items-center justify-center text-sm font-semibold
                       ${index < 3
-                        ? 'bg-[#EDE6DC] text-[#2F2F2F]'
+                        ? 'bg-[#E8E2DA] text-[black] marble-texture'
                         : 'bg-[#FAF7F2] text-[#9A9A9A]'
                       }
                     `}>
@@ -77,13 +77,13 @@ export function RightSidebar() {
                     {/* Content - Airy Layout */}
                     <div className="flex-1 min-w-0">
                       <h4 className="
-                        text-sm font-medium text-[#2F2F2F] mb-1.5 leading-snug
-                        line-clamp-2 group-hover:text-[#2F2F2F] transition-colors duration-300
+                        text-sm font-medium text-[black] mb-1.5 leading-snug
+                        line-clamp-2 group-hover:text-[black] transition-colors duration-300
                       ">
                         {item.title}
                       </h4>
                       <div className="flex items-center gap-3 text-xs text-[#9A9A9A]">
-                        <span className="group-hover:text-[#2F2F2F] transition-colors">❤️ {item.likeCount}</span>
+                        <span className="group-hover:text-[black] transition-colors">❤️ {item.likeCount}</span>
                         <span>👁️ {item.viewCount}</span>
                       </div>
                     </div>
@@ -96,7 +96,7 @@ export function RightSidebar() {
 
         {/* Categories - Minimal Tags */}
         <div className="bg-white rounded-3xl p-7" style={{ boxShadow: '0 2px 12px rgba(0, 0, 0, 0.04)' }}>
-          <h3 className="font-semibold text-[#2F2F2F] mb-6 text-base">灵感角落</h3>
+          <h3 className="font-semibold text-[black] mb-6 text-base">灵感角落</h3>
           <div className="flex flex-wrap gap-2.5">
             {['设计灵感', '生活美学', '艺术策展', '好书推荐', '音乐精选'].map((tag) => (
               <Link
@@ -104,7 +104,7 @@ export function RightSidebar() {
                 href={`/explore?tag=${encodeURIComponent(tag)}`}
                 className="
                   px-4 py-2 bg-[#FAF7F2] text-[#9A9A9A] rounded-full text-sm font-medium
-                  hover:bg-[#EDE6DC] hover:text-[#2F2F2F] transition-all duration-300
+                  hover:bg-[#E8E2DA] hover:text-[black] transition-all duration-300 hover:marble-texture
                 "
               >
                 {tag}
@@ -114,9 +114,9 @@ export function RightSidebar() {
         </div>
 
         {/* Daily Pick - Magazine Editorial Style */}
-        <div className="bg-[#EDE6DC] rounded-3xl p-7">
+        <div className="bg-[#E8E2DA] marble-texture rounded-3xl p-7">
           <div className="flex items-center justify-between mb-5">
-            <h3 className="font-semibold text-base text-[#2F2F2F]">今日推荐</h3>
+            <h3 className="font-semibold text-base text-[black]">今日推荐</h3>
             <Calendar className="w-4 h-4 text-[#9A9A9A]" />
           </div>
           <p className="text-sm text-[#6B6B6B] mb-5 leading-relaxed">
@@ -125,8 +125,8 @@ export function RightSidebar() {
           <Link
             href="/daily"
             className="
-              inline-flex items-center gap-2 text-sm font-semibold text-[#2F2F2F]
-              hover:text-[#2F2F2F]/80 transition-colors duration-300
+              inline-flex items-center gap-2 text-sm font-semibold text-[black]
+              hover:text-[black]/80 transition-colors duration-300
             "
           >
             走进画廊
@@ -136,7 +136,7 @@ export function RightSidebar() {
 
         {/* Newsletter - Elegant Typography */}
         <div className="bg-white rounded-3xl p-7" style={{ boxShadow: '0 2px 12px rgba(0, 0, 0, 0.04)' }}>
-          <h3 className="font-semibold text-[#2F2F2F] mb-3 text-base">灵感知音</h3>
+          <h3 className="font-semibold text-[black] mb-3 text-base">灵感知音</h3>
           <p className="text-sm text-[#9A9A9A] mb-5 leading-relaxed">
             每周与你分享精选灵感，不错过任何美好事物
           </p>
@@ -144,14 +144,14 @@ export function RightSidebar() {
             type="email"
             placeholder="留下你的邮箱"
             className="
-              w-full px-5 py-3.5 bg-[#FAF7F2] rounded-xl text-sm text-[#2F2F2F]
+              w-full px-5 py-3.5 bg-[#FAF7F2] rounded-xl text-sm text-[black]
               focus:outline-none focus:ring-2 focus:ring-[#E86A5A]
               placeholder:text-[#9A9A9A] transition-all duration-300
             "
           />
           <button className="
-            w-full mt-4 bg-[#EDE6DC] text-[#2F2F2F] px-4 py-3.5 rounded-xl text-sm font-semibold
-            hover:bg-[#2F2F2F] hover:text-white transition-all duration-300 hover:shadow-md hover:-translate-y-0.5
+            w-full mt-4 bg-[#E8E2DA] marble-texture text-[black] px-4 py-3.5 rounded-xl text-sm font-semibold
+            hover:bg-[black] hover:text-white transition-all duration-300 hover:shadow-md hover:-translate-y-0.5
           ">
             加入
           </button>

@@ -163,7 +163,7 @@ export function ContentDetailModal({
                 if (images.length === 0 || (images.length === 1 && !images[0])) {
                   return (
                     <div className="aspect-square bg-gradient-to-br from-[#F4DADA] to-[#F2C94C33] rounded-2xl flex items-center justify-center">
-                      <span className="text-9xl text-[#EDE6DC] font-bold">
+                      <span className="text-9xl text-[#E8E2DA] font-bold">
                         {content.title.charAt(0)}
                       </span>
                     </div>
@@ -175,7 +175,7 @@ export function ContentDetailModal({
                     {/* 当前图片 */}
                     {imageError || !images[currentImageIndex] ? (
                       <div className="aspect-square bg-gradient-to-br from-[#F4DADA] to-[#F2C94C33] rounded-2xl flex items-center justify-center">
-                        <span className="text-9xl text-[#EDE6DC] font-bold">
+                        <span className="text-9xl text-[#E8E2DA] font-bold">
                           {content.title.charAt(0)}
                         </span>
                       </div>
@@ -236,7 +236,7 @@ export function ContentDetailModal({
 
                     {/* 图片计数 */}
                     {images.length > 1 && (
-                      <div className="absolute top-6 left-6 bg-[#2F2F2F]/70 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm">
+                      <div className="absolute top-6 left-6 bg-[black]/70 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm">
                         {currentImageIndex + 1} / {images.length}
                       </div>
                     )}
@@ -259,12 +259,12 @@ export function ContentDetailModal({
                         style={{ boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)' }}
                       />
                     ) : (
-                      <div className="w-10 h-10 rounded-full bg-[#EDE6DC] flex items-center justify-center text-[#2F2F2F] font-semibold">
+                      <div className="w-10 h-10 rounded-full bg-[#E8E2DA] marble-texture flex items-center justify-center text-[black] font-semibold">
                         {content.author?.charAt(0) || '管'}
                       </div>
                     )}
                     <div>
-                      <div className="font-medium text-[#2F2F2F]">
+                      <div className="font-medium text-[black]">
                         {content.author || '管理员'}
                       </div>
                       <div className="text-xs text-[#9A9A9A]">
@@ -277,7 +277,7 @@ export function ContentDetailModal({
                     </div>
                   </div>
                   {content.category && (
-                    <span className="px-3 py-1 rounded-full text-xs font-medium bg-[#EDE6DC] text-[#2F2F2F]">
+                    <span className="px-3 py-1 rounded-full text-xs font-medium bg-[#E8E2DA] marble-texture text-[black]">
                       {content.category.name}
                     </span>
                   )}
@@ -285,7 +285,7 @@ export function ContentDetailModal({
 
                 {/* Content */}
                 <div className="mb-6">
-                  <h2 className="text-xl font-semibold text-[#2F2F2F] mb-3">
+                  <h2 className="text-xl font-semibold text-[black] mb-3">
                     {content.title}
                   </h2>
                   {content.description && (
@@ -301,7 +301,7 @@ export function ContentDetailModal({
                 </div>
 
                 {/* Stats */}
-                <div className="flex items-center gap-6 text-sm text-[#9A9A9A] mb-8 pb-8 border-b border-[#EDE6DC]">
+                <div className="flex items-center gap-6 text-sm text-[#9A9A9A] mb-8 pb-8 border-b border-[#E8E2DA]">
                   <div className="flex items-center gap-1.5">
                     <Eye className="w-4 h-4" />
                     <span>{content.viewCount}</span>
@@ -321,7 +321,7 @@ export function ContentDetailModal({
 
                 {/* Comments Section */}
                 <div>
-                  <h3 className="font-medium text-[#2F2F2F] mb-4">
+                  <h3 className="font-medium text-[black] mb-4">
                     评论 {comments.length > 0 && `(${comments.length})`}
                   </h3>
 
@@ -333,12 +333,12 @@ export function ContentDetailModal({
                     <div className="space-y-4 mb-8">
                       {comments.map((comment) => (
                         <div key={comment.id} className="flex gap-3">
-                          <div className="w-8 h-8 rounded-full bg-[#EDE6DC] flex items-center justify-center text-[#2F2F2F] text-xs font-semibold flex-shrink-0">
+                          <div className="w-8 h-8 rounded-full bg-[#E8E2DA] marble-texture flex items-center justify-center text-[black] text-xs font-semibold flex-shrink-0">
                             {comment.authorName?.charAt(0) || '客'}
                           </div>
                           <div className="flex-1">
                             <div className="mb-1">
-                              <span className="text-sm font-medium text-[#2F2F2F]">
+                              <span className="text-sm font-medium text-[black]">
                                 {comment.authorName || '访客'}
                               </span>
                               <span className="text-xs text-[#9A9A9A] ml-2">
@@ -360,14 +360,14 @@ export function ContentDetailModal({
               </div>
 
               {/* Action Bar - Fixed at bottom */}
-              <div className="sticky bottom-0 bg-white border-t border-[#EDE6DC] p-6">
+              <div className="sticky bottom-0 bg-white border-t border-[#E8E2DA] p-6">
                 {/* Quick Actions */}
                 <div className="flex items-center gap-3 mb-4">
                   <button
                     onClick={handleLike}
                     className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all ${
                       isLiked
-                        ? 'text-[#2F2F2F] bg-[#EDE6DC]'
+                        ? 'text-[black] bg-[#E8E2DA] marble-texture'
                         : 'text-[#9A9A9A] hover:bg-[#FAF7F2]'
                     }`}
                   >
@@ -381,7 +381,7 @@ export function ContentDetailModal({
                     onClick={() => setIsBookmarked(!isBookmarked)}
                     className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all ${
                       isBookmarked
-                        ? 'text-[#2F2F2F] bg-[#EDE6DC]'
+                        ? 'text-[black] bg-[#E8E2DA] marble-texture'
                         : 'text-[#9A9A9A] hover:bg-[#FAF7F2]'
                     }`}
                   >
@@ -404,12 +404,12 @@ export function ContentDetailModal({
                     value={newComment}
                     onChange={(e) => setNewComment(e.target.value)}
                     placeholder="说点什么..."
-                    className="w-full px-4 py-3 pr-12 bg-[#FAF7F2] rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-[#EDE6DC] focus:bg-white transition-all"
+                    className="w-full px-4 py-3 pr-12 bg-[#FAF7F2] rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-[#E8E2DA] focus:bg-white transition-all"
                   />
                   <button
                     type="submit"
                     disabled={!newComment.trim()}
-                    className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-[#2F2F2F] text-white rounded-full flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed hover:scale-105 transition-transform"
+                    className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-[black] text-white rounded-full flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed hover:scale-105 transition-transform"
                   >
                     <Send className="w-4 h-4" />
                   </button>

@@ -13,7 +13,7 @@ export default function ExplorePage() {
   return (
     <div className="min-h-screen bg-[#FAF7F2]">
       {/* Header */}
-      <div className="sticky top-0 z-40 bg-white/80 backdrop-blur-lg border-b border-[#EDE6DC]">
+      <div className="sticky top-0 z-40 bg-white/80 backdrop-blur-lg border-b border-[#E8E2DA]">
         <div className="max-w-[1800px] mx-auto px-8 py-6">
           <div className="flex items-center gap-6">
             <Link href="/" className="flex items-center gap-2 text-[#9A9A9A] hover:text-[#E86A5A] transition-colors">
@@ -21,7 +21,7 @@ export default function ExplorePage() {
               <span className="text-sm font-medium">返回客厅</span>
             </Link>
             <div className="flex-1">
-              <h1 className="text-2xl font-bold text-[#2F2F2F]">
+              <h1 className="text-2xl font-bold text-[black]">
                 {currentTag ? `#${currentTag}` : '探索灵感'}
               </h1>
               <p className="text-[#9A9A9A] text-sm mt-1">
@@ -34,7 +34,7 @@ export default function ExplorePage() {
                 <input
                   type="text"
                   placeholder="搜索灵感..."
-                  className="pl-11 pr-4 py-2.5 bg-[#FAF7F2] rounded-full text-sm text-[#2F2F2F] focus:outline-none focus:ring-2 focus:ring-[#E86A5A] w-64 placeholder:text-[#9A9A9A] transition-all"
+                  className="pl-11 pr-4 py-2.5 bg-[#FAF7F2] rounded-full text-sm text-[black] focus:outline-none focus:ring-2 focus:ring-[#E86A5A] w-64 placeholder:text-[#9A9A9A] transition-all"
                 />
               </div>
               <button className="p-2.5 bg-[#FAF7F2] rounded-full hover:bg-[#F4DADA] transition-colors">

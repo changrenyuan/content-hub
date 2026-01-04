@@ -85,7 +85,7 @@ export function MagazineCard({
           {/* Category Tag - Soft and Minimal */}
           {category && (
             <div className="absolute top-5 left-5">
-              <span className="bg-white/95 backdrop-blur-sm px-4 py-2 rounded-full text-xs font-semibold text-[#2F2F2F] shadow-sm hover:shadow-md transition-shadow" style={{ boxShadow: '0 2px 8px rgba(0, 0, 0, 0.04)' }}>
+              <span className="bg-white/95 backdrop-blur-sm px-4 py-2 rounded-full text-xs font-semibold text-[black] shadow-sm hover:shadow-md transition-shadow" style={{ boxShadow: '0 2px 8px rgba(0, 0, 0, 0.04)' }}>
                 {category.name}
               </span>
             </div>
@@ -132,7 +132,7 @@ export function MagazineCard({
         {/* Content Section - High Whitespace */}
         <div className="p-7 space-y-5">
           {/* Title - Elegant Typography */}
-          <h2 className="text-base font-semibold leading-relaxed text-[#2F2F2F] line-clamp-2 group-hover:text-[#2F2F2F] transition-colors duration-300">
+          <h2 className="text-base font-semibold leading-relaxed text-[black] line-clamp-2 group-hover:text-[black] transition-colors duration-300">
             {title}
           </h2>
 
