@@ -61,8 +61,8 @@ export function MagazineCard({
 
   return (
     <article
-      className="group bg-white rounded-3xl overflow-hidden transition-all duration-500 hover:scale-[1.02] hover:shadow-xl cursor-pointer"
-      style={{ boxShadow: '0 4px 24px rgba(0, 0, 0, 0.04)' }}
+      className="group bg-white rounded-3xl overflow-hidden transition-all duration-500 hover:scale-[1.01] hover:shadow-lg cursor-pointer"
+      style={{ boxShadow: '0 2px 12px rgba(0, 0, 0, 0.04)' }}
       onClick={() => onClick?.()}
     >
         {/* Image Section - Picture First */}
@@ -85,7 +85,7 @@ export function MagazineCard({
           {/* Category Tag - Soft and Minimal */}
           {category && (
             <div className="absolute top-5 left-5">
-              <span className="bg-white/95 backdrop-blur-sm px-4 py-2 rounded-full text-xs font-semibold text-[#1D1D1F] shadow-md hover:shadow-lg transition-shadow" style={{ boxShadow: '0 2px 12px rgba(0, 0, 0, 0.06)' }}>
+              <span className="bg-white/95 backdrop-blur-sm px-4 py-2 rounded-full text-xs font-semibold text-[#2F2F2F] shadow-sm hover:shadow-md transition-shadow" style={{ boxShadow: '0 2px 8px rgba(0, 0, 0, 0.04)' }}>
                 {category.name}
               </span>
             </div>
@@ -109,7 +109,7 @@ export function MagazineCard({
             </div>
           )}
 
-          {/* Bookmark Button - 小红书红点缀 */}
+          {/* Bookmark Button - 珊瑚红点缀 */}
           <button
             onClick={(e) => {
               e.preventDefault();
@@ -119,12 +119,12 @@ export function MagazineCard({
             className={`
               absolute top-5 right-5 w-11 h-11 rounded-full bg-white/95 backdrop-blur-sm flex items-center justify-center
               transition-all duration-300 hover:scale-110
-              ${isBookmarked ? 'shadow-lg' : ''}
+              ${isBookmarked ? 'shadow-md' : ''}
             `}
-            style={{ boxShadow: '0 2px 12px rgba(0, 0, 0, 0.06)' }}
+            style={{ boxShadow: '0 2px 8px rgba(0, 0, 0, 0.04)' }}
           >
             <BookMarked
-              className={`w-4.5 h-4.5 transition-all duration-300 ${isBookmarked ? 'fill-[#FE2C55] text-[#FE2C55] scale-110' : 'text-[#86868B]'}`}
+              className={`w-4.5 h-4.5 transition-all duration-300 ${isBookmarked ? 'fill-[#E86A5A] text-[#E86A5A] scale-110' : 'text-[#6B6B6B]'}`}
             />
           </button>
         </div>
@@ -132,13 +132,13 @@ export function MagazineCard({
         {/* Content Section - High Whitespace */}
         <div className="p-7 space-y-5">
           {/* Title - Elegant Typography */}
-          <h2 className="text-base font-semibold leading-relaxed text-[#1D1D1F] line-clamp-2 group-hover:text-[#1D1D1F] transition-colors duration-300">
+          <h2 className="text-base font-semibold leading-relaxed text-[#2F2F2F] line-clamp-2 group-hover:text-[#2F2F2F] transition-colors duration-300">
             {title}
           </h2>
 
           {/* Description - Subtle and Minimal */}
           {description && (
-            <p className="text-sm text-[#86868B] line-clamp-2 leading-relaxed font-normal">
+            <p className="text-sm text-[#6B6B6B] line-clamp-2 leading-relaxed font-normal">
               {description}
             </p>
           )}
@@ -146,22 +146,22 @@ export function MagazineCard({
           {/* Footer - Minimal and Elegant */}
           <div className="flex items-center justify-between pt-4">
             {/* Date - Minimal */}
-            <span className="text-xs text-[#86868B] font-medium tracking-wide">
+            <span className="text-xs text-[#9A9A9A] font-medium tracking-wide">
               {formattedDate}
             </span>
 
             {/* Stats - Warm and Subtle */}
-            <div className="flex items-center gap-5 text-xs text-[#86868B]">
+            <div className="flex items-center gap-5 text-xs text-[#9A9A9A]">
               <button
                 onClick={(e) => {
                   e.preventDefault();
                   setIsLiked(!isLiked);
                 }}
                 title={isLiked ? "心动已记下" : "心动"}
-                className="flex items-center gap-1.5 hover:text-[#FE2C55] transition-colors duration-300 group/btn"
+                className="flex items-center gap-1.5 hover:text-[#E86A5A] transition-colors duration-300 group/btn"
               >
                 <Heart
-                  className={`w-4 h-4 transition-all duration-300 ${isLiked ? 'fill-[#FE2C55] text-[#FE2C55] scale-110' : 'group-hover/btn:scale-110'}`}
+                  className={`w-4 h-4 transition-all duration-300 ${isLiked ? 'fill-[#E86A5A] text-[#E86A5A] scale-110' : 'group-hover/btn:scale-110'}`}
                 />
                 <span className="transition-opacity duration-300">{likeCount + (isLiked ? 1 : 0)}</span>
               </button>

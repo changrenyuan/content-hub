@@ -1,38 +1,55 @@
 @import "tailwindcss";
 
 :root {
-  /* 艺术杂志感配色方案 */
-  --background: #F5F5F7; /* 苹果风格浅灰 */
-  --foreground: #1D1D1F; /* 深石墨色 */
-  --foreground-secondary: #86868B; /* 烟叠感辅助色 */
-  --accent-red: #FE2C55; /* 小红书红 */
-  --accent-blue: #007AFF; /* 科技蓝 */
+  /* 艺术感 / 灵感型 / 温暖 / 向上 / 女性友好配色体系 */
+
+  /* 背景色 - 奶油白 / 亚麻色 */
+  --bg-main: #FAF7F2;
+  --bg-card: #FFFFFF;
+
+  /* 主强调色 - 珊瑚红，偏艺术 */
+  --color-primary: #E86A5A;
+
+  /* 文字颜色 - 禁止纯黑 */
+  --text-main: #2F2F2F;
+  --text-secondary: #6B6B6B;
+  --text-muted: #9A9A9A;
+
+  /* 分割线 / 边框 */
+  --border-light: #EDE6DC;
+
+  /* 情绪点缀色 - 小面积使用 */
+  --accent-green: #8FB6A6;
+  --accent-yellow: #F2C94C;
+  --accent-pink: #F4DADA;
+
+  /* 兼容旧命名 */
+  --background: var(--bg-main);
+  --foreground: var(--text-main);
+  --foreground-secondary: var(--text-secondary);
+  --accent-red: var(--color-primary);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-foreground-secondary: var(--foreground-secondary);
-  --color-accent-red: var(--accent-red);
-  --color-accent-blue: var(--accent-blue);
+  --color-background: var(--bg-main);
+  --color-foreground: var(--text-main);
+  --color-foreground-secondary: var(--text-secondary);
+  --color-accent-red: var(--color-primary);
+  --color-accent-blue: var(--accent-green);
   --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
   --font-mono: var(--font-geist-mono);
 
   /* 艺术杂志感：极柔和投影 */
-  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.04);
-  --shadow-card-hover: 0 8px 32px rgba(0, 0, 0, 0.08);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --shadow-card: 0 2px 12px rgba(0, 0, 0, 0.04);
+  --shadow-card-hover: 0 4px 20px rgba(0, 0, 0, 0.06);
+  --shadow-soft: 0 1px 3px rgba(0, 0, 0, 0.03);
+  --shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.04);
+  --shadow-elegant: 0 8px 24px rgba(0, 0, 0, 0.04);
 }
 
 body {
-  background: #F5F5F7;
-  color: var(--foreground);
+  background: var(--bg-main);
+  color: var(--text-main);
   /* 优雅的系统字体 - 杂志质感 */
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -57,14 +74,14 @@ select {
 
 input:focus,
 textarea:focus {
-  outline: 2px solid var(--accent-blue);
+  outline: 2px solid var(--color-primary);
   outline-offset: 2px;
 }
 
 /* 滚动条美化 - 更柔和 */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 4px;
+  height: 4px;
 }
 
 ::-webkit-scrollbar-track {
@@ -72,12 +89,12 @@ textarea:focus {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #d4d4d8;
-  border-radius: 3px;
+  background: var(--border-light);
+  border-radius: 2px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #a1a1aa;
+  background: var(--text-muted);
 }
 
 /* 暖色调过渡 */

@@ -28,12 +28,12 @@ const Navbar = () => {
       <nav className="mx-auto flex max-w-[1600px] items-center justify-between px-6 py-4 sm:px-8">
         {/* Logo */}
         <Link href="/" className="flex items-center space-x-2 group">
-          <div className="relative w-9 h-9 rounded-full bg-gradient-to-br from-zinc-900 to-zinc-600 flex items-center justify-center transition-transform group-hover:scale-105">
+          <div className="relative w-9 h-9 rounded-full bg-gradient-to-br from-[#E86A5A] to-[#F2C94C] flex items-center justify-center transition-transform group-hover:scale-105">
             <Heart className="w-5 h-5 text-white" />
           </div>
           <div className="flex flex-col">
-            <span className="text-xl font-black tracking-tight text-[#1D1D1F] leading-tight">见地</span>
-            <span className="text-[10px] font-medium text-[#86868B] tracking-[0.2em] hidden sm:inline">IN SIGHT</span>
+            <span className="text-xl font-black tracking-tight text-[#2F2F2F] leading-tight">见地</span>
+            <span className="text-[10px] font-medium text-[#9A9A9A] tracking-[0.2em] hidden sm:inline">IN SIGHT</span>
           </div>
         </Link>
 
@@ -43,7 +43,7 @@ const Navbar = () => {
             <Link
               key={item.href}
               href={item.href}
-              className="px-5 py-2 text-sm font-medium text-[#86868B] transition-colors hover:text-[#1D1D1F] hover:bg-zinc-50 rounded-full"
+              className="px-5 py-2 text-sm font-medium text-[#9A9A9A] transition-colors hover:text-[#E86A5A] hover:bg-[#FAF7F2] rounded-full"
             >
               {item.label}
             </Link>
@@ -54,13 +54,13 @@ const Navbar = () => {
           {/* Search Bar */}
           <form onSubmit={handleSearch} className="hidden md:block">
             <div className="relative">
-              <Search className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[#86868B]" />
+              <Search className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[#9A9A9A]" />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="寻觅灵感..."
-                className="w-72 rounded-full bg-zinc-100/80 py-2.5 pl-11 pr-5 text-sm text-[#1D1D1F] placeholder:text-[#86868B] transition-all focus:outline-none focus:ring-2 focus:ring-[#007AFF]/20 hover:bg-zinc-100"
+                className="w-72 rounded-full bg-[#FAF7F2] py-2.5 pl-11 pr-5 text-sm text-[#2F2F2F] placeholder:text-[#9A9A9A] transition-all focus:outline-none focus:ring-2 focus:ring-[#E86A5A]/20 hover:bg-[#F4DADA]"
               />
             </div>
           </form>
@@ -68,7 +68,7 @@ const Navbar = () => {
           {/* Collect Button */}
           <Link
             href="/admin"
-            className="hidden md:block px-5 py-2.5 bg-[#1D1D1F] text-white rounded-full text-sm font-medium hover:bg-black transition-all hover:shadow-lg hover:-translate-y-0.5" style={{ boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)' }}
+            className="hidden md:block px-5 py-2.5 bg-[#E86A5A] text-white rounded-full text-sm font-medium hover:bg-[#D85A4A] transition-all hover:shadow-md hover:-translate-y-0.5" style={{ boxShadow: '0 2px 12px rgba(232, 106, 90, 0.2)' }}
           >
             收藏灵感
           </Link>
@@ -76,7 +76,7 @@ const Navbar = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="lg:hidden rounded-full p-2 text-[#86868B] transition-colors hover:bg-zinc-100"
+            className="lg:hidden rounded-full p-2 text-[#9A9A9A] transition-colors hover:bg-[#FAF7F2]"
           >
             {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
@@ -85,17 +85,17 @@ const Navbar = () => {
 
       {/* Mobile Navigation */}
       {isMenuOpen && (
-        <div className="lg:hidden border-t border-zinc-100 bg-white/95 backdrop-blur-lg">
+        <div className="lg:hidden border-t border-[#EDE6DC] bg-white/95 backdrop-blur-lg">
           <div className="px-6 py-4">
             <form onSubmit={handleSearch} className="mb-4">
               <div className="relative">
-                <Search className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[#86868B]" />
+                <Search className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[#9A9A9A]" />
                 <input
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="寻觅灵感..."
-                  className="w-full rounded-full bg-zinc-100/80 py-2.5 pl-11 pr-5 text-sm text-[#1D1D1F] placeholder:text-[#86868B] focus:outline-none"
+                  className="w-full rounded-full bg-[#FAF7F2] py-2.5 pl-11 pr-5 text-sm text-[#2F2F2F] placeholder:text-[#9A9A9A] focus:outline-none"
                 />
               </div>
             </form>
@@ -105,17 +105,17 @@ const Navbar = () => {
                   key={item.href}
                   href={item.href}
                   onClick={() => setIsMenuOpen(false)}
-                  className="block px-4 py-3 text-base font-medium text-[#86868B] transition-colors hover:bg-zinc-50 hover:text-[#007AFF] rounded-2xl"
+                  className="block px-4 py-3 text-base font-medium text-[#9A9A9A] transition-colors hover:bg-[#FAF7F2] hover:text-[#E86A5A] rounded-2xl"
                 >
                   {item.label}
                 </Link>
               ))}
             </div>
-            <div className="mt-6 pt-4 border-t border-zinc-100">
+            <div className="mt-6 pt-4 border-t border-[#EDE6DC]">
               <Link
                 href="/admin"
                 onClick={() => setIsMenuOpen(false)}
-                className="flex items-center justify-center w-full px-5 py-3 bg-[#1D1D1F] text-white rounded-full text-base font-medium hover:bg-black"
+                className="flex items-center justify-center w-full px-5 py-3 bg-[#E86A5A] text-white rounded-full text-base font-medium hover:bg-[#D85A4A]"
               >
                 收藏灵感
               </Link>
