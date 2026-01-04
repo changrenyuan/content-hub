@@ -133,7 +133,7 @@ export function ContentDetailModal({
       onClick={onClose}
     >
       <div
-        className="relative bg-white rounded-3xl w-full max-w-6xl max-h-[90vh] overflow-hidden flex"
+        className="relative bg-white rounded-3xl w-full max-w-6xl overflow-hidden flex max-h-[90vh]"
         style={{ boxShadow: '0 16px 48px rgba(0, 0, 0, 0.12)' }}
         onClick={(e) => e.stopPropagation()}
       >
@@ -246,9 +246,9 @@ export function ContentDetailModal({
             </div>
 
             {/* Right Side - Content & Comments */}
-            <div className="w-2/5 flex flex-col h-[85vh]">
-              {/* Header - Author Info */}
-              <div className="p-6 border-b border-[#EDE6DC]">
+            <div className="w-2/5 overflow-y-auto max-h-[85vh]">
+              <div className="p-6">
+                {/* Header - Author Info */}
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-3">
                     {getImageUrl(content.authorAvatar) ? (
@@ -294,7 +294,7 @@ export function ContentDetailModal({
                 </div>
 
                 {/* Content */}
-                <div className="mb-4">
+                <div className="mb-6">
                   <h2 className="text-xl font-semibold text-[#2F2F2F] mb-3">
                     {content.title}
                   </h2>
@@ -311,7 +311,7 @@ export function ContentDetailModal({
                 </div>
 
                 {/* Stats */}
-                <div className="flex items-center gap-6 text-sm text-[#9A9A9A]">
+                <div className="flex items-center gap-6 text-sm text-[#9A9A9A] mb-8 pb-8 border-b border-[#EDE6DC]">
                   <div className="flex items-center gap-1.5">
                     <Eye className="w-4 h-4" />
                     <span>{content.viewCount}</span>
@@ -328,49 +328,49 @@ export function ContentDetailModal({
                     })}
                   </span>
                 </div>
-              </div>
 
-              {/* Comments Section */}
-              <div className="flex-1 overflow-y-auto p-6">
-                <h3 className="font-medium text-[#2F2F2F] mb-4">
-                  评论 {comments.length > 0 && `(${comments.length})`}
-                </h3>
+                {/* Comments Section */}
+                <div>
+                  <h3 className="font-medium text-[#2F2F2F] mb-4">
+                    评论 {comments.length > 0 && `(${comments.length})`}
+                  </h3>
 
-                {comments.length === 0 ? (
-                  <div className="text-center py-8 text-[#9A9A9A] text-sm">
-                    还没有评论，来说点什么吧
-                  </div>
-                ) : (
-                  <div className="space-y-4">
-                    {comments.map((comment) => (
-                      <div key={comment.id} className="flex gap-3">
-                        <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#8FB6A6] to-[#F4DADA] flex items-center justify-center text-white text-xs font-semibold flex-shrink-0">
-                          {comment.authorName?.charAt(0) || '客'}
-                        </div>
-                        <div className="flex-1">
-                          <div className="mb-1">
-                            <span className="text-sm font-medium text-[#2F2F2F]">
-                              {comment.authorName || '访客'}
-                            </span>
-                            <span className="text-xs text-[#9A9A9A] ml-2">
-                              {new Date(comment.createdAt).toLocaleDateString('zh-CN', {
-                                month: 'short',
-                                day: 'numeric',
-                              })}
-                            </span>
+                  {comments.length === 0 ? (
+                    <div className="text-center py-8 text-[#9A9A9A] text-sm">
+                      还没有评论，来说点什么吧
+                    </div>
+                  ) : (
+                    <div className="space-y-4 mb-8">
+                      {comments.map((comment) => (
+                        <div key={comment.id} className="flex gap-3">
+                          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#8FB6A6] to-[#F4DADA] flex items-center justify-center text-white text-xs font-semibold flex-shrink-0">
+                            {comment.authorName?.charAt(0) || '客'}
                           </div>
-                          <p className="text-sm text-[#6B6B6B] leading-relaxed">
-                            {comment.content}
-                          </p>
+                          <div className="flex-1">
+                            <div className="mb-1">
+                              <span className="text-sm font-medium text-[#2F2F2F]">
+                                {comment.authorName || '访客'}
+                              </span>
+                              <span className="text-xs text-[#9A9A9A] ml-2">
+                                {new Date(comment.createdAt).toLocaleDateString('zh-CN', {
+                                  month: 'short',
+                                  day: 'numeric',
+                                })}
+                              </span>
+                            </div>
+                            <p className="text-sm text-[#6B6B6B] leading-relaxed">
+                              {comment.content}
+                            </p>
+                          </div>
                         </div>
-                      </div>
-                    ))}
-                  </div>
-                )}
+                      ))}
+                    </div>
+                  )}
+                </div>
               </div>
 
-              {/* Action Bar */}
-              <div className="p-6 border-t border-[#EDE6DC]">
+              {/* Action Bar - Fixed at bottom */}
+              <div className="sticky bottom-0 bg-white border-t border-[#EDE6DC] p-6">
                 {/* Quick Actions */}
                 <div className="flex items-center gap-3 mb-4">
                   <button
