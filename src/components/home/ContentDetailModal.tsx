@@ -15,6 +15,7 @@ interface Content {
   description: string | null;
   content: string | null;
   imageUrl: string | null;
+  imageUrls?: string[] | null;
   sourceUrl: string | null;
   viewCount: number;
   likeCount: number;
@@ -44,6 +45,7 @@ export function ContentDetailModal({
   const [newComment, setNewComment] = useState('');
   const [isLiked, setIsLiked] = useState(false);
   const [isBookmarked, setIsBookmarked] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
     if (!isOpen || !contentId) return;
@@ -57,6 +59,7 @@ export function ContentDetailModal({
         if (contentRes.ok) {
           const contentData = await contentRes.json();
           setContent(contentData);
+          setCurrentImageIndex(0); // 重置图片索引
         }
 
         // 获取评论
@@ -145,22 +148,87 @@ export function ContentDetailModal({
           </div>
         ) : content ? (
           <>
-            {/* Left Side - Image */}
-            <div className="w-3/5 bg-[#F5F5F7] flex items-center justify-center p-8">
-              {content.imageUrl ? (
-                <img
-                  src={content.imageUrl}
-                  alt={content.title}
-                  className="max-w-full max-h-[85vh] object-contain rounded-xl"
-                  style={{ boxShadow: '0 10px 40px rgba(0, 0, 0, 0.08)' }}
-                />
-              ) : (
-                <div className="aspect-square bg-gradient-to-br from-zinc-100 to-zinc-200 rounded-2xl flex items-center justify-center">
-                  <span className="text-9xl text-zinc-300 font-bold">
-                    {content.title.charAt(0)}
-                  </span>
-                </div>
-              )}
+            {/* Left Side - Image Gallery */}
+            <div className="w-3/5 bg-[#F5F5F7] flex items-center justify-center p-8 relative">
+              {/* 图片数组：优先使用imageUrls，没有则使用imageUrl */}
+              {(() => {
+                const images = Array.isArray(content.imageUrls) && content.imageUrls.length > 0
+                  ? content.imageUrls
+                  : (content.imageUrl ? [content.imageUrl] : []);
+
+                if (images.length === 0) {
+                  return (
+                    <div className="aspect-square bg-gradient-to-br from-zinc-100 to-zinc-200 rounded-2xl flex items-center justify-center">
+                      <span className="text-9xl text-zinc-300 font-bold">
+                        {content.title.charAt(0)}
+                      </span>
+                    </div>
+                  );
+                }
+
+                return (
+                  <div className="relative w-full h-full flex items-center justify-center">
+                    {/* 当前图片 */}
+                    <img
+                      src={images[currentImageIndex]}
+                      alt={`${content.title} - 图片 ${currentImageIndex + 1}`}
+                      className="max-w-full max-h-[85vh] object-contain rounded-xl"
+                      style={{ boxShadow: '0 10px 40px rgba(0, 0, 0, 0.08)' }}
+                    />
+
+                    {/* 上一张按钮 */}
+                    {images.length > 1 && (
+                      <button
+                        onClick={() => setCurrentImageIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1))}
+                        className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-lg"
+                        style={{ boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)' }}
+                      >
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                        </svg>
+                      </button>
+                    )}
+
+                    {/* 下一张按钮 */}
+                    {images.length > 1 && (
+                      <button
+                        onClick={() => setCurrentImageIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1))}
+                        className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-lg"
+                        style={{ boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)' }}
+                      >
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                      </button>
+                    )}
+
+                    {/* 图片指示器 */}
+                    {images.length > 1 && (
+                      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
+                        {images.map((_, index) => (
+                          <button
+                            key={index}
+                            onClick={() => setCurrentImageIndex(index)}
+                            className={`w-2 h-2 rounded-full transition-all ${
+                              index === currentImageIndex
+                                ? 'bg-white w-6'
+                                : 'bg-white/50 hover:bg-white/80'
+                            }`}
+                            style={{ boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)' }}
+                          />
+                        ))}
+                      </div>
+                    )}
+
+                    {/* 图片计数 */}
+                    {images.length > 1 && (
+                      <div className="absolute top-6 left-6 bg-black/50 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm">
+                        {currentImageIndex + 1} / {images.length}
+                      </div>
+                    )}
+                  </div>
+                );
+              })()}
             </div>
 
             {/* Right Side - Content & Comments */}

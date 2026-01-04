@@ -46,7 +46,8 @@ export const contents = pgTable(
     title: varchar("title", { length: 255 }).notNull(),
     description: text("description"),
     content: text("content"), // 详细内容
-    imageUrl: varchar("image_url", { length: 500 }),
+    imageUrl: varchar("image_url", { length: 500 }), // 封面图片（兼容单图）
+    imageUrls: jsonb("image_urls").$type<string[]>(), // 所有图片URLs（支持多图）
     sourceUrl: varchar("source_url", { length: 500 }), // 原始链接
     categoryId: varchar("category_id", { length: 36 }),
     tags: jsonb("tags").$type<string[]>(), // 标签数组
@@ -125,6 +126,7 @@ export const insertContentSchema = createCoercedInsertSchema(contents).pick({
   description: true,
   content: true,
   imageUrl: true,
+  imageUrls: true,
   sourceUrl: true,
   categoryId: true,
   tags: true,
@@ -139,6 +141,7 @@ export const updateContentSchema = createCoercedInsertSchema(contents)
     description: true,
     content: true,
     imageUrl: true,
+    imageUrls: true,
     sourceUrl: true,
     categoryId: true,
     tags: true,

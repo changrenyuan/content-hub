@@ -49,11 +49,28 @@ export async function POST(request: NextRequest) {
       // 先创建所有内容
       for (const item of data) {
         try {
+          // 处理图片URLs：支持imageUrls数组，第一张作为封面图片
+          let coverImageUrl = item.imageUrl || item.image || item.cover || '';
+          const allImageUrls: string[] = [];
+
+          // 如果有imageUrls数组
+          if (Array.isArray(item.imageUrls) && item.imageUrls.length > 0) {
+            allImageUrls.push(...item.imageUrls);
+            // 如果封面图未设置，使用第一张作为封面
+            if (!coverImageUrl) {
+              coverImageUrl = item.imageUrls[0];
+            }
+          } else if (coverImageUrl) {
+            // 如果只有单图，也存入数组
+            allImageUrls.push(coverImageUrl);
+          }
+
           const newContent = await contentManager.createContent({
             title: item.title || item.noteTitle || '',
             description: item.description || item.noteDesc || '',
             content: item.content || '',
-            imageUrl: item.imageUrl || item.image || item.cover || '',
+            imageUrl: coverImageUrl,
+            imageUrls: allImageUrls.length > 0 ? allImageUrls : undefined,
             sourceUrl: item.sourceUrl || item.url || '',
             categoryId: item.categoryId || null,
             tags: Array.isArray(item.tags) ? item.tags : [],
