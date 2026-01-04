@@ -31,7 +31,8 @@ export const ImageUpload = ({ value, onChange, onRemove, maxSize = MAX_FILE_SIZE
 
     // 验证文件大小
     if (file.size > maxSize) {
-      setError(`文件大小超过限制（最大 ${Math.round(maxSize / 1024 / 1024)}MB）`);
+      const maxSizeMB = Math.round(maxSize / 1024 / 1024);
+      setError(`文件大小超过限制（最大 ${maxSizeMB}MB）`);
       return;
     }
 
@@ -80,6 +81,17 @@ export const ImageUpload = ({ value, onChange, onRemove, maxSize = MAX_FILE_SIZE
     onChange(url);
   };
 
+  // 格式化文件大小
+  const formatFileSize = (bytes: number): string => {
+    if (bytes === 0) return '0 B';
+    const k = 1024;
+    const sizes = ['B', 'KB', 'MB', 'GB'];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return Math.round((bytes / Math.pow(k, i)) * 100) / 100 + ' ' + sizes[i];
+  };
+
+  const maxSizeMB = Math.round(maxSize / 1024 / 1024);
+
   return (
     <div className="space-y-3">
       {/* Upload Area */}
@@ -110,7 +122,7 @@ export const ImageUpload = ({ value, onChange, onRemove, maxSize = MAX_FILE_SIZE
                   {' '}或拖拽图片到这里
                 </div>
                 <div className="text-xs text-gray-500">
-                  支持 JPEG, PNG, GIF, WebP（最大 {Math.round(maxSize / 1024 / 1024)}MB）
+                  支持 JPEG, PNG, GIF, WebP（最大 {maxSizeMB}MB）
                 </div>
               </>
             )}

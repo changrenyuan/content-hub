@@ -1,10 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { contentManager, commentManager } from '@/storage/database';
+import { downloadAndUploadImage, batchDownloadAndUploadImages } from '@/lib/imageUploader';
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { method, url, data, categoryId } = body;
+    const { method, url, data, categoryId, autoSaveImages = true } = body;
 
     if (method === 'link') {
       // 链接导入 - 需要爬虫服务支持
@@ -65,9 +66,50 @@ export async function POST(request: NextRequest) {
             allImageUrls.push(coverImageUrl);
           }
 
+          // 自动保存图片到Blob（如果启用）
+          if (autoSaveImages && allImageUrls.length > 0) {
+            console.log(`📥 Processing images for: ${item.title || 'Untitled'}`);
+            
+            try {
+              // 批量下载并上传所有图片
+              const uploadedUrls = await batchDownloadAndUploadImages(allImageUrls, {
+                skipErrors: true, // 失败时保留原始URL
+                pathPrefix: 'xiaohongshu',
+                onProgress: (current, total) => {
+                  console.log(`  ⏳ Image ${current}/${total} uploaded`);
+                },
+              });
+
+              // 更新图片URL数组
+              allImageUrls.length = 0;
+              allImageUrls.push(...uploadedUrls);
+
+              // 更新封面图URL
+              if (coverImageUrl) {
+                // 找到对应的上传URL（第一张或匹配的）
+                coverImageUrl = uploadedUrls[0];
+              }
+            } catch (error) {
+              console.error('Failed to upload images, keeping original URLs:', error);
+            }
+          }
+
           // 处理作者信息：支持多种字段名
           const author = item.author || item.authorName || item.nickname || item.user?.nickname || item.user?.name || '';
           const authorAvatar = item.authorAvatar || item.avatar || item.user?.avatar || item.user?.avatarUrl || '';
+
+          // 如果启用了自动保存，也处理作者头像
+          let processedAuthorAvatar = authorAvatar;
+          if (autoSaveImages && authorAvatar) {
+            try {
+              processedAuthorAvatar = await downloadAndUploadImage(authorAvatar, {
+                skipErrors: true,
+                pathPrefix: 'xiaohongshu/avatars',
+              });
+            } catch (error) {
+              console.error('Failed to upload author avatar:', error);
+            }
+          }
 
           const newContent = await contentManager.createContent({
             title: item.title || item.noteTitle || '',
@@ -79,7 +121,7 @@ export async function POST(request: NextRequest) {
             categoryId: item.categoryId || null,
             tags: Array.isArray(item.tags) ? item.tags : [],
             author: author,
-            authorAvatar: authorAvatar,
+            authorAvatar: processedAuthorAvatar,
             published: item.published !== undefined ? item.published : true,
             featured: item.featured || false,
             sort: item.sort || 0,

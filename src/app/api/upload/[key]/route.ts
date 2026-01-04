@@ -1,5 +1,5 @@
-import { del } from '@vercel/blob';
 import { NextRequest, NextResponse } from 'next/server';
+import { deleteFile } from '@/lib/blob';
 
 export async function DELETE(
   request: NextRequest,
@@ -17,7 +17,7 @@ export async function DELETE(
     }
 
     // 从 Blob 存储中删除文件
-    await del(key);
+    await deleteFile(key);
 
     return NextResponse.json({
       success: true,

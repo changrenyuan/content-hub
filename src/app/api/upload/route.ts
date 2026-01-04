@@ -1,5 +1,5 @@
-import { put } from '@vercel/blob';
 import { NextRequest, NextResponse } from 'next/server';
+import { uploadFile, isSupportedImageType, formatFileSize } from '@/lib/blob';
 
 // 允许的图片类型
 const ALLOWED_TYPES = [
@@ -27,7 +27,7 @@ export async function POST(request: NextRequest) {
     }
 
     // 验证文件类型
-    if (!ALLOWED_TYPES.includes(file.type as any)) {
+    if (!isSupportedImageType(file.type)) {
       return NextResponse.json(
         { error: `不支持的文件类型：${file.type}。支持的类型：JPEG, PNG, GIF, WebP` },
         { status: 400 }
@@ -37,29 +37,22 @@ export async function POST(request: NextRequest) {
     // 验证文件大小
     if (file.size > MAX_FILE_SIZE) {
       return NextResponse.json(
-        { error: `文件大小超过限制（最大 4MB）` },
+        { error: `文件大小超过限制（最大 ${formatFileSize(MAX_FILE_SIZE)}）` },
         { status: 400 }
       );
     }
 
-    // 生成唯一的文件名
-    const timestamp = Date.now();
-    const randomStr = Math.random().toString(36).substring(2, 9);
-    const fileExtension = file.name.split('.').pop();
-    const fileName = `uploads/${timestamp}_${randomStr}.${fileExtension}`;
-
     // 上传到 Vercel Blob
-    const blob = await put(fileName, file, {
-      access: 'public',
-      addRandomSuffix: false,
+    const result = await uploadFile(file, {
+      contentType: file.type,
     });
 
     return NextResponse.json({
-      url: blob.url,
-      downloadUrl: blob.downloadUrl,
-      pathname: blob.pathname,
+      url: result.url,
+      downloadUrl: result.downloadUrl,
+      pathname: result.pathname,
       size: file.size,
-      contentType: blob.contentType,
+      contentType: result.contentType,
     });
   } catch (error) {
     console.error('Upload error:', error);

@@ -16,6 +16,7 @@ export default function XiaohongshuSyncPage() {
 
   // JSON import
   const [jsonContent, setJsonContent] = useState('');
+  const [autoSaveImages, setAutoSaveImages] = useState(true); // 默认启用自动保存图片
 
   // Manual import
   const [manualData, setManualData] = useState({
@@ -85,6 +86,7 @@ export default function XiaohongshuSyncPage() {
         body: JSON.stringify({
           method: 'json',
           data,
+          autoSaveImages, // 传递自动保存图片选项
         }),
       });
 
@@ -180,8 +182,9 @@ export default function XiaohongshuSyncPage() {
               <h3 className="font-semibold text-blue-900 mb-1">使用说明</h3>
               <ul className="text-sm text-blue-800 space-y-1">
                 <li>• <strong>链接导入：</strong>粘贴小红书笔记链接，系统会尝试抓取内容（需要配置爬虫服务）</li>
-                <li>• <strong>JSON 批量导入：</strong>使用标准 JSON 格式批量导入内容</li>
+                <li>• <strong>JSON 批量导入：</strong>使用标准 JSON 格式批量导入内容，支持自动保存图片到 Blob</li>
                 <li>• <strong>手动添加：</strong>手动输入小红书笔记信息</li>
+                <li>• <strong>自动保存图片：</strong>开启后，外部图片 URL 会自动下载并上传到 Vercel Blob，避免防盗链和链接失效</li>
                 <li>• 注意：由于小红书没有公开 API，链接导入功能需要额外配置第三方爬虫服务</li>
               </ul>
             </div>
@@ -292,6 +295,25 @@ export default function XiaohongshuSyncPage() {
             {/* JSON Import Form */}
             {syncMethod === 'json' && (
               <form onSubmit={handleJsonImport} className="space-y-4">
+                {/* 自动保存图片选项 */}
+                <div className="flex items-center gap-3 p-4 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-lg border border-indigo-100">
+                  <input
+                    type="checkbox"
+                    id="autoSaveImages"
+                    checked={autoSaveImages}
+                    onChange={(e) => setAutoSaveImages(e.target.checked)}
+                    className="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+                  />
+                  <div className="flex-1">
+                    <label htmlFor="autoSaveImages" className="text-sm font-medium text-indigo-900 cursor-pointer">
+                      自动保存图片到 Blob Storage
+                    </label>
+                    <p className="text-xs text-indigo-700 mt-0.5">
+                      系统会自动下载外部图片并上传到 Vercel Blob，避免图片防盗链和链接失效问题
+                    </p>
+                  </div>
+                </div>
+
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     JSON 数据
@@ -299,16 +321,39 @@ export default function XiaohongshuSyncPage() {
                   <textarea
                     value={jsonContent}
                     onChange={(e) => setJsonContent(e.target.value)}
-                    placeholder='[{"title": "标题", "description": "描述", "imageUrl": "图片URL", "categoryId": "xxx", "tags": ["tag1"]}]'
+                    placeholder='[{"title": "标题", "description": "描述", "imageUrls": ["图片URL1", "图片URL2"], "author": "作者名称", "authorAvatar": "头像URL", "comments": [{"content": "评论内容", "nickname": "评论者昵称"}], "categoryId": "xxx", "tags": ["tag1"]}]'
                     className="w-full h-64 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent font-mono text-sm"
                     required
                   />
                   <p className="mt-2 text-xs text-gray-500">
                     格式示例：
-                    <code className="block mt-1 font-mono">
-                      [{`{"title": "标题", "description": "描述", "imageUrl": "图片URL", "categoryId": "xxx", "tags": ["tag1"]}`}]
+                    <code className="block mt-1 p-3 bg-gray-50 rounded border font-mono text-xs overflow-auto">
+{`[{
+  "title": "我的年度18图🫧",
+  "description": "明年也要和妈妈一起拍多多的照片～",
+  "imageUrls": [
+    "https://example.com/image1.jpg",
+    "https://example.com/image2.jpg"
+  ],
+  "author": "小红薯",
+  "authorAvatar": "https://example.com/avatar.jpg",
+  "categoryId": "xhs_article",
+  "tags": ["年度总结", "家庭"],
+  "comments": [
+    {"content": "太有爱了！", "nickname": "小明"},
+    {"content": "妈妈一定很开心～", "nickname": "小红"}
+  ]
+}]`}
                     </code>
                   </p>
+                  <p className="mt-2 text-xs text-gray-400">
+                    支持字段：title, description, imageUrls, imageUrl, author, authorAvatar, tags, categoryId, comments（支持content/text, nickname/authorName）
+                  </p>
+                  {autoSaveImages && (
+                    <p className="mt-2 text-xs text-indigo-600 bg-indigo-50 p-2 rounded">
+                      💡 已启用自动保存图片：外部图片 URL 将自动下载并上传到 Blob Storage
+                    </p>
+                  )}
                 </div>
                 <button
                   type="submit"
