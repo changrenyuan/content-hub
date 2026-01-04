@@ -258,13 +258,9 @@ export function ContentDetailModal({
                         className="w-10 h-10 rounded-full object-cover"
                         style={{ boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)' }}
                       />
-                    ) : content.author ? (
-                      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-pink-400 to-red-400 flex items-center justify-center text-white font-semibold">
-                        {content.author.charAt(0)}
-                      </div>
                     ) : (
-                      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-pink-400 to-red-400 flex items-center justify-center text-white font-semibold">
-                        账号
+                      <div className="w-10 h-10 rounded-full bg-[#EDE6DC] flex items-center justify-center text-[#2F2F2F] font-semibold">
+                        {content.author?.charAt(0) || '管'}
                       </div>
                     )}
                     <div>
@@ -281,13 +277,7 @@ export function ContentDetailModal({
                     </div>
                   </div>
                   {content.category && (
-                    <span
-                      className="px-3 py-1 rounded-full text-xs font-medium"
-                      style={{
-                        backgroundColor: `${content.category.color}15`,
-                        color: content.category.color,
-                      }}
-                    >
+                    <span className="px-3 py-1 rounded-full text-xs font-medium bg-[#EDE6DC] text-[#2F2F2F]">
                       {content.category.name}
                     </span>
                   )}
@@ -343,7 +333,7 @@ export function ContentDetailModal({
                     <div className="space-y-4 mb-8">
                       {comments.map((comment) => (
                         <div key={comment.id} className="flex gap-3">
-                          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#8FB6A6] to-[#F4DADA] flex items-center justify-center text-white text-xs font-semibold flex-shrink-0">
+                          <div className="w-8 h-8 rounded-full bg-[#EDE6DC] flex items-center justify-center text-[#2F2F2F] text-xs font-semibold flex-shrink-0">
                             {comment.authorName?.charAt(0) || '客'}
                           </div>
                           <div className="flex-1">
@@ -377,7 +367,7 @@ export function ContentDetailModal({
                     onClick={handleLike}
                     className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all ${
                       isLiked
-                        ? 'text-[#E86A5A] bg-[#F4DADA]'
+                        ? 'text-[#2F2F2F] bg-[#EDE6DC]'
                         : 'text-[#9A9A9A] hover:bg-[#FAF7F2]'
                     }`}
                   >
@@ -391,7 +381,7 @@ export function ContentDetailModal({
                     onClick={() => setIsBookmarked(!isBookmarked)}
                     className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all ${
                       isBookmarked
-                        ? 'text-[#E86A5A] bg-[#F4DADA]'
+                        ? 'text-[#2F2F2F] bg-[#EDE6DC]'
                         : 'text-[#9A9A9A] hover:bg-[#FAF7F2]'
                     }`}
                   >
@@ -414,12 +404,12 @@ export function ContentDetailModal({
                     value={newComment}
                     onChange={(e) => setNewComment(e.target.value)}
                     placeholder="说点什么..."
-                    className="w-full px-4 py-3 pr-12 bg-[#FAF7F2] rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-[#E86A5A] focus:bg-white transition-all"
+                    className="w-full px-4 py-3 pr-12 bg-[#FAF7F2] rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-[#EDE6DC] focus:bg-white transition-all"
                   />
                   <button
                     type="submit"
                     disabled={!newComment.trim()}
-                    className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-[#E86A5A] text-white rounded-full flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed hover:scale-105 transition-transform"
+                    className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-[#2F2F2F] text-white rounded-full flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed hover:scale-105 transition-transform"
                   >
                     <Send className="w-4 h-4" />
                   </button>

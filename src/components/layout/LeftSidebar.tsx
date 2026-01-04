@@ -21,9 +21,9 @@ export function LeftSidebar() {
         {/* Logo - Minimal and Elegant */}
         <div className="px-6">
           <div className="flex items-center gap-3">
-            <div className="w-11 h-11 rounded-full bg-gradient-to-br from-[#E86A5A] to-[#F2C94C]" />
+            <div className="w-11 h-11 rounded-full bg-[#EDE6DC]" />
             <div>
-              <h1 className="text-2xl font-black tracking-tight text-[#2F2F2F]">见地</h1>
+              <h1 className="text-2xl font-black tracking-tight" style={{ backgroundImage: 'linear-gradient(135deg, #E86A5A, #F2C94C)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>见地</h1>
               <span className="text-xs font-medium text-[#9A9A9A] tracking-[0.2em]">IN SIGHT</span>
             </div>
           </div>
@@ -43,12 +43,12 @@ export function LeftSidebar() {
                     className={`
                       flex items-center gap-3 px-5 py-3.5 rounded-2xl transition-all duration-300
                       ${isActive
-                        ? 'bg-[#E86A5A] text-white shadow-sm'
-                        : 'text-[#9A9A9A] hover:bg-white hover:text-[#E86A5A]'
+                        ? 'bg-[#EDE6DC] text-[#2F2F2F] shadow-sm'
+                        : 'text-[#9A9A9A] hover:bg-white hover:text-[#2F2F2F]'
                       }
                     `}
                   >
-                    <Icon className={`w-5 h-5 ${isActive ? 'text-white' : ''}`} />
+                    <Icon className={`w-5 h-5 ${isActive ? 'text-[#2F2F2F]' : ''}`} />
                     <span className="font-medium tracking-wide">{item.label}</span>
                   </Link>
                 </li>
@@ -60,9 +60,9 @@ export function LeftSidebar() {
         {/* Quick Actions - Elegant Button */}
         <div className="px-6">
           <button className="
-            w-full bg-[#E86A5A] text-white px-6 py-4 rounded-2xl font-semibold
-            hover:bg-[#D85A4A] transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5
-          " style={{ boxShadow: '0 2px 12px rgba(232, 106, 90, 0.2)' }}>
+            w-full bg-[#EDE6DC] text-[#2F2F2F] px-6 py-4 rounded-2xl font-semibold
+            hover:bg-[#2F2F2F] hover:text-white transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5
+          ">
             收藏灵感
           </button>
         </div>
@@ -71,7 +71,7 @@ export function LeftSidebar() {
         <div className="px-6 pt-8">
           <Link
             href="/settings"
-            className="flex items-center gap-3 text-[#9A9A9A] hover:text-[#E86A5A] transition-colors duration-300 px-4 py-2 rounded-xl hover:bg-white"
+            className="flex items-center gap-3 text-[#9A9A9A] hover:text-[#2F2F2F] transition-colors duration-300 px-4 py-2 rounded-xl hover:bg-white"
           >
             <Settings className="w-5 h-5" />
             <span className="text-sm font-medium">设置</span>
