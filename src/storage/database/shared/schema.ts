@@ -51,6 +51,8 @@ export const contents = pgTable(
     sourceUrl: varchar("source_url", { length: 500 }), // 原始链接
     categoryId: varchar("category_id", { length: 36 }),
     tags: jsonb("tags").$type<string[]>(), // 标签数组
+    author: varchar("author", { length: 100 }), // 作者名称
+    authorAvatar: varchar("author_avatar", { length: 500 }), // 作者头像URL
     featured: boolean("featured").default(false).notNull(), // 是否精选
     published: boolean("published").default(true).notNull(), // 是否发布
     viewCount: integer("view_count").default(0).notNull(), // 浏览次数
@@ -130,6 +132,8 @@ export const insertContentSchema = createCoercedInsertSchema(contents).pick({
   sourceUrl: true,
   categoryId: true,
   tags: true,
+  author: true,
+  authorAvatar: true,
   featured: true,
   published: true,
   sort: true,
@@ -145,6 +149,8 @@ export const updateContentSchema = createCoercedInsertSchema(contents)
     sourceUrl: true,
     categoryId: true,
     tags: true,
+    author: true,
+    authorAvatar: true,
     featured: true,
     published: true,
     viewCount: true,

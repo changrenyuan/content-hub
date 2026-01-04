@@ -20,6 +20,8 @@ interface Content {
   viewCount: number;
   likeCount: number;
   createdAt: Date;
+  author?: string | null;
+  authorAvatar?: string | null;
   category?: {
     name: string;
     color?: string;
@@ -237,12 +239,33 @@ export function ContentDetailModal({
               <div className="p-6 border-b border-gray-100">
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-pink-400 to-red-400 flex items-center justify-center text-white font-semibold">
-                      账号
-                    </div>
+                    {content.authorAvatar ? (
+                      <img
+                        src={content.authorAvatar}
+                        alt={content.author || '作者'}
+                        className="w-10 h-10 rounded-full object-cover"
+                        style={{ boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)' }}
+                      />
+                    ) : content.author ? (
+                      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-pink-400 to-red-400 flex items-center justify-center text-white font-semibold">
+                        {content.author.charAt(0)}
+                      </div>
+                    ) : (
+                      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-pink-400 to-red-400 flex items-center justify-center text-white font-semibold">
+                        账号
+                      </div>
+                    )}
                     <div>
-                      <div className="font-medium text-[#1D1D1F]">管理员</div>
-                      <div className="text-xs text-[#86868B]">发布内容</div>
+                      <div className="font-medium text-[#1D1D1F]">
+                        {content.author || '管理员'}
+                      </div>
+                      <div className="text-xs text-[#86868B]">
+                        {new Date(content.createdAt).toLocaleDateString('zh-CN', {
+                          year: 'numeric',
+                          month: 'long',
+                          day: 'numeric'
+                        })}
+                      </div>
                     </div>
                   </div>
                   {content.category && (

@@ -65,6 +65,10 @@ export async function POST(request: NextRequest) {
             allImageUrls.push(coverImageUrl);
           }
 
+          // 处理作者信息：支持多种字段名
+          const author = item.author || item.authorName || item.nickname || item.user?.nickname || item.user?.name || '';
+          const authorAvatar = item.authorAvatar || item.avatar || item.user?.avatar || item.user?.avatarUrl || '';
+
           const newContent = await contentManager.createContent({
             title: item.title || item.noteTitle || '',
             description: item.description || item.noteDesc || '',
@@ -74,6 +78,8 @@ export async function POST(request: NextRequest) {
             sourceUrl: item.sourceUrl || item.url || '',
             categoryId: item.categoryId || null,
             tags: Array.isArray(item.tags) ? item.tags : [],
+            author: author,
+            authorAvatar: authorAvatar,
             published: item.published !== undefined ? item.published : true,
             featured: item.featured || false,
             sort: item.sort || 0,

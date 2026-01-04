@@ -8,6 +8,13 @@
       "when": 1767499703962,
       "tag": "0000_sparkling_nico_minoru",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1767499879398,
+      "tag": "0001_curvy_talos",
+      "breakpoints": true
     }
   ]
 }

@@ -14,6 +14,8 @@ interface MagazineCardProps {
   viewCount: number;
   likeCount: number;
   createdAt: Date;
+  author?: string | null;
+  authorAvatar?: string | null;
   onClick?: () => void;
 }
 
@@ -26,6 +28,8 @@ export function MagazineCard({
   viewCount,
   likeCount,
   createdAt,
+  author,
+  authorAvatar,
   onClick,
 }: MagazineCardProps) {
   const [isLiked, setIsLiked] = useState(false);
@@ -82,6 +86,24 @@ export function MagazineCard({
               <span className="bg-white/95 backdrop-blur-sm px-4 py-2 rounded-full text-xs font-semibold text-[#1D1D1F] shadow-md hover:shadow-lg transition-shadow" style={{ boxShadow: '0 2px 12px rgba(0, 0, 0, 0.06)' }}>
                 {category.name}
               </span>
+            </div>
+          )}
+
+          {/* Author Avatar - Left Bottom */}
+          {author && (
+            <div className="absolute bottom-5 left-5">
+              {authorAvatar ? (
+                <img
+                  src={authorAvatar}
+                  alt={author}
+                  className="w-8 h-8 rounded-full object-cover border-2 border-white"
+                  style={{ boxShadow: '0 2px 8px rgba(0, 0, 0, 0.15)' }}
+                />
+              ) : (
+                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-pink-400 to-red-400 flex items-center justify-center text-white text-xs font-bold border-2 border-white">
+                  {author.charAt(0)}
+                </div>
+              )}
             </div>
           )}
 

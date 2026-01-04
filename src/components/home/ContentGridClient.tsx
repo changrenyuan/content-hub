@@ -15,6 +15,8 @@ interface Content {
   category?: {
     name: string;
   } | null;
+  author?: string | null;
+  authorAvatar?: string | null;
 }
 
 export function ContentGridClient() {
@@ -103,6 +105,8 @@ export function ContentGridClient() {
             viewCount={item.viewCount}
             likeCount={item.likeCount}
             createdAt={item.createdAt}
+            author={item.author}
+            authorAvatar={item.authorAvatar}
             onClick={() => setSelectedContentId(item.id)}
           />
         ))}
