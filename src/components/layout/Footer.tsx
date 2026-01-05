@@ -11,10 +11,10 @@ const Footer = () => {
   ];
 
   const categoryLinks = [
-    { href: '/category/tools', label: '好工具' },
-    { href: '/category/articles', label: '好文章' },
-    { href: '/category/design', label: '设计灵感' },
-    { href: '/category/resources', label: '学习资源' },
+    { href: '/explore?tag=好工具', label: '好工具' },
+    { href: '/explore?tag=好文章', label: '好文章' },
+    { href: '/explore?tag=设计灵感', label: '设计灵感' },
+    { href: '/explore?tag=学习资源', label: '学习资源' },
   ];
 
   const socialLinks = [
