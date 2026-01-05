@@ -20,7 +20,7 @@ export default function Home() {
             <BeautyContentGrid />
           </div>
 
-          {/* 中：正经内容 - 3列瀑布流 */}
+          {/* 中：价值视界 - 3列瀑布流 */}
           <div className="flex-1 min-w-0">
             <SeriousContentGrid />
           </div>

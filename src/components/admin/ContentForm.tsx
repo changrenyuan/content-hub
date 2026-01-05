@@ -364,12 +364,12 @@ const ContentForm = ({
                   onChange={handleInputChange}
                   className="w-full max-w-xs rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 transition-colors focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20"
                 >
-                  <option value="serious">正经内容</option>
+                  <option value="serious">价值视界</option>
                   <option value="beauty">生活美学</option>
                   <option value="featured">精选内容</option>
                 </select>
                 <p className="mt-1 text-xs text-gray-500">
-                  正经内容显示在中间，生活美学显示在左侧
+                  价值视界显示在中间，生活美学显示在左侧
                 </p>
               </div>
 

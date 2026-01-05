@@ -51,7 +51,7 @@ export const contents = pgTable(
     sourceUrl: varchar("source_url", { length: 500 }), // 原始链接
     categoryId: varchar("category_id", { length: 36 }),
     tags: jsonb("tags").$type<string[]>(), // 标签数组
-    contentType: varchar("content_type", { length: 20 }).default("serious").notNull(), // 内容类型：beauty(生活美学)/serious(正经)/featured(精选)
+    contentType: varchar("content_type", { length: 20 }).default("serious").notNull(), // 内容类型：beauty(生活美学)/serious(价值视界)/featured(精选)
     author: varchar("author", { length: 100 }), // 作者名称
     authorAvatar: varchar("author_avatar", { length: 500 }), // 作者头像URL
     featured: boolean("featured").default(false).notNull(), // 是否精选
