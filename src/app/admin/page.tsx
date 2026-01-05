@@ -1,10 +1,25 @@
 import { contentManager, categoryManager, commentManager } from "@/storage/database";
 import { AdminDashboard } from "@/components/admin/AdminDashboard";
+import { AdminLogin } from "@/components/admin/AdminLogin";
+import { cookies } from 'next/headers';
 
 // Force dynamic rendering to avoid build-time database connection issues
 export const dynamic = 'force-dynamic';
 
+async function checkAuth() {
+  const cookieStore = await cookies();
+  const session = cookieStore.get('admin_session');
+  return session?.value === 'authenticated';
+}
+
 export default async function AdminPage() {
+  // Check authentication
+  const isAuthenticated = await checkAuth();
+
+  if (!isAuthenticated) {
+    return <AdminLogin />;
+  }
+
   // Fetch dashboard stats
   const [allContents, allCategories, pendingComments, featuredContents] = await Promise.all([
     contentManager.getContents({ includeUnpublished: true, limit: 1000 }),

@@ -1,7 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Download, Link2, FileJson, Loader2, CheckCircle, AlertCircle } from 'lucide-react';
+import { AdminLogin } from '@/components/admin/AdminLogin';
 
 type SyncMethod = 'link' | 'json' | 'manual';
 
@@ -9,6 +10,33 @@ export default function XiaohongshuSyncPage() {
   const [syncMethod, setSyncMethod] = useState<SyncMethod>('link');
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<{ success: boolean; message: string; count?: number } | null>(null);
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        const response = await fetch('/api/admin/auth/verify');
+        const data = await response.json();
+        setIsAuthenticated(data.authenticated);
+      } catch (error) {
+        setIsAuthenticated(false);
+      }
+    };
+
+    checkAuth();
+  }, []);
+
+  if (isAuthenticated === null) {
+    return (
+      <div className="min-h-screen bg-[#FAF7F2] flex items-center justify-center">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#E86A5A]"></div>
+      </div>
+    );
+  }
+
+  if (!isAuthenticated) {
+    return <AdminLogin />;
+  }
 
   // Link import
   const [url, setUrl] = useState('');

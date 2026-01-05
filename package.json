@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --webpack",
+    "dev": "next dev --webpack --port 5000",
     "build": "next build --webpack",
-    "start": "next start",
+    "start": "next start --port 5000",
     "lint": "eslint",
     "db:generate": "dotenv -- drizzle-kit generate",
     "db:push": "dotenv -- drizzle-kit push",

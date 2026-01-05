@@ -18,6 +18,7 @@ interface MagazineCardProps {
   author?: string | null;
   authorAvatar?: string | null;
   onClick?: () => void;
+  aspectRatio?: '4/5' | '1/1' | '3/4';
 }
 
 export function MagazineCard({
@@ -32,6 +33,7 @@ export function MagazineCard({
   author,
   authorAvatar,
   onClick,
+  aspectRatio = '4/5',
 }: MagazineCardProps) {
   const [isLiked, setIsLiked] = useState(false);
   const [isBookmarked, setIsBookmarked] = useState(false);
@@ -66,7 +68,7 @@ export function MagazineCard({
       onClick={() => onClick?.()}
     >
         {/* Image Section - Picture First */}
-        <div className={`relative aspect-[4/5] overflow-hidden bg-gradient-to-br ${gradientClass}`}>
+        <div className={`relative overflow-hidden bg-gradient-to-br ${gradientClass}`} style={{ aspectRatio: aspectRatio }}>
           {processedImageUrl ? (
             <img
               src={processedImageUrl}
