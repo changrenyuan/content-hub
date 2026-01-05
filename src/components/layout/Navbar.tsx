@@ -24,11 +24,11 @@ const Navbar = () => {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-white/90 backdrop-blur-lg">
+    <header className="sticky top-0 z-50 w-full bg-[#F7F7F7]" style={{ boxShadow: '0 2px 6px rgba(0, 0, 0, 0.04)' }}>
       <nav className="mx-auto flex max-w-[1600px] items-center justify-between px-6 py-4 sm:px-8">
         {/* Logo */}
         <Link href="/" className="flex items-center space-x-2 group">
-          <div className="relative w-9 h-9 rounded-full bg-[#E8E2DA] marble-texture flex items-center justify-center transition-transform group-hover:scale-105">
+          <div className="relative w-9 h-9 rounded-full bg-[#F7F7F7] marble-texture flex items-center justify-center transition-transform group-hover:scale-105">
             <Heart className="w-5 h-5 text-black" />
           </div>
           <div className="flex flex-col">
@@ -60,7 +60,7 @@ const Navbar = () => {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="寻觅灵感..."
-                className="w-72 rounded-full py-2.5 pl-11 pr-5 text-sm text-[black] placeholder:text-[#9A9A9A] transition-all focus:outline-none focus:ring-2 focus:ring-[#E8E2DA] hover:bg-[#E8E2DA]"
+                className="w-72 rounded-full py-2.5 pl-11 pr-5 text-sm text-[black] placeholder:text-[#9A9A9A] transition-all focus:outline-none focus:ring-2 focus:ring-[#F7F7F7] hover:bg-[#F7F7F7]"
               />
             </div>
           </form>
@@ -68,7 +68,7 @@ const Navbar = () => {
           {/* Collect Button */}
           <Link
             href="/admin"
-            className="hidden md:block px-5 py-2.5 bg-[#E8E2DA] marble-texture text-[black] rounded-full text-sm font-medium hover:bg-[black] hover:text-white transition-all hover:shadow-md hover:-translate-y-0.5"
+            className="hidden md:block px-5 py-2.5 bg-[#F7F7F7] marble-texture text-[black] rounded-full text-sm font-medium hover:bg-[black] hover:text-white transition-all hover:shadow-md hover:-translate-y-0.5"
           >
             收藏灵感
           </Link>
@@ -85,7 +85,7 @@ const Navbar = () => {
 
       {/* Mobile Navigation */}
       {isMenuOpen && (
-        <div className="lg:hidden border-t border-[#E8E2DA] bg-white/90 backdrop-blur-lg">
+        <div className="lg:hidden border-t border-[#F7F7F7] bg-[#F7F7F7]">
           <div className="px-6 py-4">
             <form onSubmit={handleSearch} className="mb-4">
               <div className="relative">
@@ -111,11 +111,11 @@ const Navbar = () => {
                 </Link>
               ))}
             </div>
-            <div className="mt-6 pt-4 border-t border-[#E8E2DA]">
+            <div className="mt-6 pt-4 border-t border-[#F7F7F7]">
               <Link
                 href="/admin"
                 onClick={() => setIsMenuOpen(false)}
-                className="flex items-center justify-center w-full px-5 py-3 bg-[#E8E2DA] marble-texture text-[black] rounded-full text-base font-medium hover:bg-[black] hover:text-white"
+                className="flex items-center justify-center w-full px-5 py-3 bg-[#F7F7F7] marble-texture text-[black] rounded-full text-base font-medium hover:bg-[black] hover:text-white"
               >
                 收藏灵感
               </Link>

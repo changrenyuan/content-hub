@@ -5,7 +5,7 @@ export default function SettingsPage() {
   return (
     <div className="min-h-screen">
       {/* Header */}
-      <div className="sticky top-0 z-40 bg-white/80 backdrop-blur-lg border-b border-[#E8E2DA]">
+      <div className="sticky top-0 z-40 bg-white/80 backdrop-blur-lg border-b border-[#F7F7F7]">
         <div className="max-w-[1800px] mx-auto px-8 py-6">
           <div className="flex items-center gap-6">
             <Link href="/" className="flex items-center gap-2 text-[#9A9A9A] hover:text-[#E86A5A] transition-colors">
@@ -24,7 +24,7 @@ export default function SettingsPage() {
       <div className="max-w-[800px] mx-auto px-8 py-12">
         <div className="bg-white rounded-3xl overflow-hidden" style={{ boxShadow: '0 2px 12px rgba(0, 0, 0, 0.04)' }}>
           {/* Appearance */}
-          <div className="p-6 border-b border-[#E8E2DA]">
+          <div className="p-6 border-b border-[#F7F7F7]">
             <div className="flex items-center gap-3 mb-4">
               <Sun className="w-5 h-5 text-[#9A9A9A]" />
               <h2 className="font-semibold text-[black]">外观</h2>
@@ -53,7 +53,7 @@ export default function SettingsPage() {
           </div>
 
           {/* Notifications */}
-          <div className="p-6 border-b border-[#E8E2DA]">
+          <div className="p-6 border-b border-[#F7F7F7]">
             <div className="flex items-center gap-3 mb-4">
               <Bell className="w-5 h-5 text-[#9A9A9A]" />
               <h2 className="font-semibold text-[black]">通知</h2>

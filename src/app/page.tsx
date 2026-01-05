@@ -1,3 +1,4 @@
+import { LeftSidebar } from "@/components/layout/LeftSidebar";
 import { BeautyContentGrid } from "@/components/home/BeautyContentGrid";
 import { SeriousContentGrid } from "@/components/home/SeriousContentGrid";
 import { RightSidebar } from "@/components/layout/RightSidebar";
@@ -7,10 +8,14 @@ export const dynamic = 'force-dynamic';
 export default function Home() {
   return (
     <div className="min-h-screen">
-      {/* 三栏内容分区布局 */}
-      <div className="max-w-[1800px] mx-auto px-8 py-12">
+      {/* 左侧悬浮导航栏 */}
+      <div className="hidden lg:block">
+        <LeftSidebar />
+      </div>
+
+      <div className="max-w-[2200px] mx-auto px-8 py-12">
         <div className="flex gap-8">
-          {/* 左：生活美学内容 - 1列瀑布流 */}
+          {/* 左：生活美学内容 */}
           <div className="w-[320px] flex-shrink-0">
             <BeautyContentGrid />
           </div>

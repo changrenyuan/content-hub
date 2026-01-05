@@ -51,7 +51,7 @@ export function AdminLogin() {
         <div className="bg-white rounded-3xl shadow-xl p-10">
           {/* Icon */}
           <div className="flex justify-center mb-8">
-            <div className="w-20 h-20 rounded-full bg-[#E8E2DA] marble-texture flex items-center justify-center">
+            <div className="w-20 h-20 rounded-full bg-[#F7F7F7] marble-texture flex items-center justify-center">
               <Lock className="w-10 h-10 text-[#9A9A9A]" />
             </div>
           </div>

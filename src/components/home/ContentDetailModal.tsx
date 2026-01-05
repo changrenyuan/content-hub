@@ -163,7 +163,7 @@ export function ContentDetailModal({
                 if (images.length === 0 || (images.length === 1 && !images[0])) {
                   return (
                     <div className="aspect-square bg-gradient-to-br from-[#F4DADA] to-[#F2C94C33] rounded-2xl flex items-center justify-center">
-                      <span className="text-9xl text-[#E8E2DA] font-bold">
+                      <span className="text-9xl text-[#F7F7F7] font-bold">
                         {content.title.charAt(0)}
                       </span>
                     </div>
@@ -175,7 +175,7 @@ export function ContentDetailModal({
                     {/* 当前图片 */}
                     {imageError || !images[currentImageIndex] ? (
                       <div className="aspect-square bg-gradient-to-br from-[#F4DADA] to-[#F2C94C33] rounded-2xl flex items-center justify-center">
-                        <span className="text-9xl text-[#E8E2DA] font-bold">
+                        <span className="text-9xl text-[#F7F7F7] font-bold">
                           {content.title.charAt(0)}
                         </span>
                       </div>
@@ -259,7 +259,7 @@ export function ContentDetailModal({
                         style={{ boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)' }}
                       />
                     ) : (
-                      <div className="w-10 h-10 rounded-full bg-[#E8E2DA] marble-texture flex items-center justify-center text-[black] font-semibold">
+                      <div className="w-10 h-10 rounded-full bg-[#F7F7F7] marble-texture flex items-center justify-center text-[black] font-semibold">
                         {content.author?.charAt(0) || '管'}
                       </div>
                     )}
@@ -277,7 +277,7 @@ export function ContentDetailModal({
                     </div>
                   </div>
                   {content.category && (
-                    <span className="px-3 py-1 rounded-full text-xs font-medium bg-[#E8E2DA] marble-texture text-[black]">
+                    <span className="px-3 py-1 rounded-full text-xs font-medium bg-[#F7F7F7] marble-texture text-[black]">
                       {content.category.name}
                     </span>
                   )}
@@ -301,7 +301,7 @@ export function ContentDetailModal({
                 </div>
 
                 {/* Stats */}
-                <div className="flex items-center gap-6 text-sm text-[#9A9A9A] mb-8 pb-8 border-b border-[#E8E2DA]">
+                <div className="flex items-center gap-6 text-sm text-[#9A9A9A] mb-8 pb-8 border-b border-[#F7F7F7]">
                   <div className="flex items-center gap-1.5">
                     <Eye className="w-4 h-4" />
                     <span>{content.viewCount}</span>
@@ -333,7 +333,7 @@ export function ContentDetailModal({
                     <div className="space-y-4 mb-8">
                       {comments.map((comment) => (
                         <div key={comment.id} className="flex gap-3">
-                          <div className="w-8 h-8 rounded-full bg-[#E8E2DA] marble-texture flex items-center justify-center text-[black] text-xs font-semibold flex-shrink-0">
+                          <div className="w-8 h-8 rounded-full bg-[#F7F7F7] marble-texture flex items-center justify-center text-[black] text-xs font-semibold flex-shrink-0">
                             {comment.authorName?.charAt(0) || '客'}
                           </div>
                           <div className="flex-1">
@@ -360,14 +360,14 @@ export function ContentDetailModal({
               </div>
 
               {/* Action Bar - Fixed at bottom */}
-              <div className="sticky bottom-0 bg-white border-t border-[#E8E2DA] p-6">
+              <div className="sticky bottom-0 bg-white border-t border-[#F7F7F7] p-6">
                 {/* Quick Actions */}
                 <div className="flex items-center gap-3 mb-4">
                   <button
                     onClick={handleLike}
                     className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all ${
                       isLiked
-                        ? 'text-[black] bg-[#E8E2DA] marble-texture'
+                        ? 'text-[black] bg-[#F7F7F7] marble-texture'
                         : 'text-[#9A9A9A] hover:bg-[var(--bg-hover)]'
                     }`}
                   >
@@ -381,7 +381,7 @@ export function ContentDetailModal({
                     onClick={() => setIsBookmarked(!isBookmarked)}
                     className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all ${
                       isBookmarked
-                        ? 'text-[black] bg-[#E8E2DA] marble-texture'
+                        ? 'text-[black] bg-[#F7F7F7] marble-texture'
                         : 'text-[#9A9A9A] hover:bg-[var(--bg-hover)]'
                     }`}
                   >
@@ -404,7 +404,7 @@ export function ContentDetailModal({
                     value={newComment}
                     onChange={(e) => setNewComment(e.target.value)}
                     placeholder="说点什么..."
-                    className="w-full px-4 py-3 pr-12 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-[#E8E2DA] focus:bg-white transition-all"
+                    className="w-full px-4 py-3 pr-12 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-[#F7F7F7] focus:bg-white transition-all"
                   />
                   <button
                     type="submit"

@@ -67,7 +67,7 @@ export function RightSidebar() {
                     <span className={`
                       flex-shrink-0 w-7 h-7 rounded-lg flex items-center justify-center text-sm font-semibold
                       ${index < 3
-                        ? 'bg-[#E8E2DA] text-[black] marble-texture'
+                        ? 'bg-[#F7F7F7] text-[black] marble-texture'
                         : 'bg-[var(--bg-hover)] text-[#9A9A9A]'
                       }
                     `}>
@@ -104,7 +104,7 @@ export function RightSidebar() {
                 href={`/explore?tag=${encodeURIComponent(tag)}`}
                 className="
                   px-4 py-2 text-[#9A9A9A] rounded-full text-sm font-medium
-                  hover:bg-[#E8E2DA] hover:text-[black] transition-all duration-300 hover:marble-texture
+                  hover:bg-[#F7F7F7] hover:text-[black] transition-all duration-300 hover:marble-texture
                 "
               >
                 {tag}
@@ -114,7 +114,7 @@ export function RightSidebar() {
         </div>
 
         {/* Daily Pick - Magazine Editorial Style */}
-        <div className="bg-[#E8E2DA] marble-texture rounded-3xl p-7">
+        <div className="bg-white rounded-3xl p-7" style={{ boxShadow: '0 2px 12px rgba(0, 0, 0, 0.04)' }}>
           <div className="flex items-center justify-between mb-5">
             <h3 className="font-semibold text-base text-[black]">今日推荐</h3>
             <Calendar className="w-4 h-4 text-[#9A9A9A]" />
@@ -150,7 +150,7 @@ export function RightSidebar() {
             "
           />
           <button className="
-            w-full mt-4 bg-[#E8E2DA] marble-texture text-[black] px-4 py-3.5 rounded-xl text-sm font-semibold
+            w-full mt-4 bg-[#F7F7F7] marble-texture text-[black] px-4 py-3.5 rounded-xl text-sm font-semibold
             hover:bg-[black] hover:text-white transition-all duration-300 hover:shadow-md hover:-translate-y-0.5
           ">
             加入

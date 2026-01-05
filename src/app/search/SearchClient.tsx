@@ -24,7 +24,7 @@ export function SearchClient() {
   return (
     <div className="min-h-screen">
       {/* Header */}
-      <div className="sticky top-0 z-40 bg-white/90 backdrop-blur-lg border-b border-[#E8E2DA]">
+      <div className="sticky top-0 z-40 bg-white/90 backdrop-blur-lg border-b border-[#F7F7F7]">
         <div className="max-w-[1800px] mx-auto px-8 py-6">
           <div className="flex items-center gap-6">
             <form onSubmit={handleSearch} className="flex-1 max-w-2xl">
@@ -66,7 +66,7 @@ export function SearchClient() {
           </>
         ) : (
           <div className="text-center py-20">
-            <div className="w-24 h-24 rounded-full bg-[#E8E2DA] marble-texture flex items-center justify-center mx-auto mb-6">
+            <div className="w-24 h-24 rounded-full bg-[#F7F7F7] marble-texture flex items-center justify-center mx-auto mb-6">
               <Search className="w-12 h-12 text-[#9A9A9A]" />
             </div>
             <h2 className="text-2xl font-bold text-[black] mb-3">寻觅灵感</h2>

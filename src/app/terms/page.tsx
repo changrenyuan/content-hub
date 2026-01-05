@@ -5,7 +5,7 @@ export default function TermsPage() {
   return (
     <div className="min-h-screen">
       {/* Header */}
-      <div className="sticky top-0 z-40 bg-white/90 backdrop-blur-lg border-b border-[#E8E2DA]">
+      <div className="sticky top-0 z-40 bg-white/90 backdrop-blur-lg border-b border-[#F7F7F7]">
         <div className="max-w-[1800px] mx-auto px-8 py-6">
           <div className="flex items-center gap-6">
             <Link href="/" className="flex items-center gap-2 text-[#9A9A9A] hover:text-[#E86A5A] transition-colors">
@@ -24,7 +24,7 @@ export default function TermsPage() {
       <div className="max-w-4xl mx-auto px-8 py-16">
         <div className="bg-white rounded-3xl p-12" style={{ boxShadow: '0 2px 12px rgba(0, 0, 0, 0.04)' }}>
           <div className="text-center mb-12">
-            <div className="w-20 h-20 rounded-full bg-[#E8E2DA] marble-texture flex items-center justify-center mx-auto mb-6">
+            <div className="w-20 h-20 rounded-full bg-[#F7F7F7] marble-texture flex items-center justify-center mx-auto mb-6">
               <FileText className="w-10 h-10 text-[black]" />
             </div>
             <h2 className="text-3xl font-bold text-[black]">使用条款</h2>
@@ -95,7 +95,7 @@ export default function TermsPage() {
             </section>
           </div>
 
-          <div className="mt-12 pt-8 border-t border-[#E8E2DA]">
+          <div className="mt-12 pt-8 border-t border-[#F7F7F7]">
             <p className="text-sm text-[#9A9A9A] text-center">
               使用见地即表示你同意本使用条款。如有疑问，请联系我们。
             </p>

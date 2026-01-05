@@ -24,13 +24,13 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="mt-20 bg-white/90 backdrop-blur-lg">
+    <footer className="mt-20 bg-[#F7F7F7]" style={{ boxShadow: '0 2px 6px rgba(0, 0, 0, 0.04)' }}>
       <div className="mx-auto max-w-[1400px] px-6 py-16 sm:px-8">
         <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4">
           {/* Brand Section */}
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center space-x-2 mb-6">
-              <div className="w-9 h-9 rounded-full bg-[#E8E2DA] marble-texture flex items-center justify-center">
+              <div className="w-9 h-9 rounded-full bg-[#F7F7F7] marble-texture flex items-center justify-center">
                 <Heart className="w-5 h-5 text-[black]" />
               </div>
               <div className="flex flex-col">
@@ -48,7 +48,7 @@ const Footer = () => {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full flex items-center justify-center text-[#9A9A9A] transition-all hover:bg-[#E8E2DA] hover:text-[black] hover:scale-110 hover:marble-texture"
+                  className="w-10 h-10 rounded-full flex items-center justify-center text-[#9A9A9A] transition-all hover:bg-[#F7F7F7] hover:text-[black] hover:scale-110 hover:marble-texture"
                   aria-label={social.label}
                 >
                   <social.icon className="h-4 w-4" />
@@ -93,13 +93,13 @@ const Footer = () => {
         </div>
 
         {/* Copyright */}
-        <div className="mt-16 pt-8 border-t border-[#E8E2DA]">
+        <div className="mt-16 pt-8 border-t border-[#F7F7F7]">
           <div className="flex flex-col items-center justify-center space-y-3">
             <p className="text-sm text-[#9A9A9A]">
               © {currentYear} 见地 IN SIGHT. All rights reserved.
             </p>
             <p className="flex items-center text-xs text-[#9A9A9A]">
-              Made with <Heart className="mx-1.5 h-3.5 w-3.5 text-[#E8E2DA]" /> for content lovers
+              Made with <Heart className="mx-1.5 h-3.5 w-3.5 text-[#F7F7F7]" /> for content lovers
             </p>
           </div>
         </div>

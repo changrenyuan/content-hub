@@ -84,7 +84,7 @@ export function BeautyContentGrid() {
           <div key={i} className="bg-white rounded-3xl overflow-hidden break-inside-avoid" style={{ boxShadow: '0 2px 12px rgba(0, 0, 0, 0.04)' }}>
             <div className="aspect-[4/5] bg-[#F7F7F7] animate-pulse" />
             <div className="p-5 space-y-3">
-              <div className="h-5 bg-[#E8E2DA] rounded animate-pulse" />
+              <div className="h-5 bg-[#F7F7F7] rounded animate-pulse" />
               <div className="h-4 bg-[#F7F7F7] rounded w-3/4 animate-pulse" />
             </div>
           </div>
