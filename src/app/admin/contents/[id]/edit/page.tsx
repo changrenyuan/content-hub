@@ -42,8 +42,12 @@ export default function EditContentPage() {
         if (!response.ok) {
           throw new Error('Failed to fetch categories');
         }
-        const categoriesData = await response.json();
-        setCategories(categoriesData);
+        const result = await response.json();
+        if (result.success && result.data) {
+          setCategories(result.data);
+        } else {
+          setCategories(result);
+        }
       } catch (error) {
         console.error('Failed to fetch categories:', error);
       }
@@ -55,8 +59,12 @@ export default function EditContentPage() {
         if (!response.ok) {
           throw new Error('Failed to fetch content');
         }
-        const contentData = await response.json();
-        setInitialData(contentData);
+        const result = await response.json();
+        if (result.success && result.data) {
+          setInitialData(result.data);
+        } else {
+          throw new Error('Invalid data format');
+        }
       } catch (error) {
         console.error('Failed to fetch content:', error);
         setError('加载内容失败');
