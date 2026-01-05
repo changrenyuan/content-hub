@@ -14,6 +14,24 @@ export default function XiaohongshuSyncPage() {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
   const [categories, setCategories] = useState<Category[]>([]);
 
+  // Link import - 移到顶层
+  const [url, setUrl] = useState('');
+  const [category, setCategory] = useState('');
+
+  // JSON import - 移到顶层
+  const [jsonContent, setJsonContent] = useState('');
+  const [autoSaveImages, setAutoSaveImages] = useState(true); // 默认启用自动保存图片
+
+  // Manual import - 移到顶层
+  const [manualData, setManualData] = useState({
+    title: '',
+    description: '',
+    content: '',
+    imageUrl: '',
+    tags: '',
+    categoryId: '',
+  });
+
   useEffect(() => {
     const checkAuth = async () => {
       try {
@@ -56,24 +74,6 @@ export default function XiaohongshuSyncPage() {
   if (!isAuthenticated) {
     return <AdminLogin />;
   }
-
-  // Link import
-  const [url, setUrl] = useState('');
-  const [category, setCategory] = useState('');
-
-  // JSON import
-  const [jsonContent, setJsonContent] = useState('');
-  const [autoSaveImages, setAutoSaveImages] = useState(true); // 默认启用自动保存图片
-
-  // Manual import
-  const [manualData, setManualData] = useState({
-    title: '',
-    description: '',
-    content: '',
-    imageUrl: '',
-    tags: '',
-    categoryId: '',
-  });
 
   const handleUrlImport = async (e: React.FormEvent) => {
     e.preventDefault();
