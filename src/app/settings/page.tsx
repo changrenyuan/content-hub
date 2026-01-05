@@ -3,7 +3,7 @@ import { ArrowLeft, Settings, Moon, Sun, Globe, Bell, Shield } from 'lucide-reac
 
 export default function SettingsPage() {
   return (
-    <div className="min-h-screen bg-[#FAF7F2]">
+    <div className="min-h-screen">
       {/* Header */}
       <div className="sticky top-0 z-40 bg-white/80 backdrop-blur-lg border-b border-[#E8E2DA]">
         <div className="max-w-[1800px] mx-auto px-8 py-6">
@@ -35,7 +35,7 @@ export default function SettingsPage() {
                   <div className="text-[black] font-medium">深色模式</div>
                   <div className="text-[#9A9A9A] text-sm">切换深色主题</div>
                 </div>
-                <button className="w-12 h-6 bg-[#FAF7F2] rounded-full relative transition-colors">
+                <button className="w-12 h-6 rounded-full relative transition-colors">
                   <div className="absolute left-1 top-1 w-4 h-4 bg-white rounded-full shadow transition-transform" />
                 </button>
               </div>
@@ -44,7 +44,7 @@ export default function SettingsPage() {
                   <div className="text-[black] font-medium">语言</div>
                   <div className="text-[#9A9A9A] text-sm">选择界面语言</div>
                 </div>
-                <select className="px-4 py-2 bg-[#FAF7F2] rounded-lg text-sm text-[black] focus:outline-none focus:ring-2 focus:ring-[#E86A5A]">
+                <select className="px-4 py-2 rounded-lg text-sm text-[black] focus:outline-none focus:ring-2 focus:ring-[#E86A5A]">
                   <option>简体中文</option>
                   <option>English</option>
                 </select>
@@ -92,7 +92,7 @@ export default function SettingsPage() {
                   <div className="text-[black] font-medium">公开资料</div>
                   <div className="text-[#9A9A9A] text-sm">其他人可以查看你的资料</div>
                 </div>
-                <button className="w-12 h-6 bg-[#FAF7F2] rounded-full relative transition-colors">
+                <button className="w-12 h-6 rounded-full relative transition-colors">
                   <div className="absolute left-1 top-1 w-4 h-4 bg-white rounded-full shadow transition-transform" />
                 </button>
               </div>

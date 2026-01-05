@@ -43,7 +43,7 @@ const Navbar = () => {
             <Link
               key={item.href}
               href={item.href}
-              className="px-5 py-2 text-sm font-medium text-[#9A9A9A] transition-colors hover:text-[black] hover:bg-[#FAF7F2] rounded-full"
+              className="px-5 py-2 text-sm font-medium text-[#9A9A9A] transition-colors hover:text-[black] hover:bg-[var(--bg-hover)] rounded-full"
             >
               {item.label}
             </Link>
@@ -60,7 +60,7 @@ const Navbar = () => {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="寻觅灵感..."
-                className="w-72 rounded-full bg-[#FAF7F2] py-2.5 pl-11 pr-5 text-sm text-[black] placeholder:text-[#9A9A9A] transition-all focus:outline-none focus:ring-2 focus:ring-[#E8E2DA] hover:bg-[#E8E2DA]"
+                className="w-72 rounded-full py-2.5 pl-11 pr-5 text-sm text-[black] placeholder:text-[#9A9A9A] transition-all focus:outline-none focus:ring-2 focus:ring-[#E8E2DA] hover:bg-[#E8E2DA]"
               />
             </div>
           </form>
@@ -76,7 +76,7 @@ const Navbar = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="lg:hidden rounded-full p-2 text-[#9A9A9A] transition-colors hover:bg-[#FAF7F2]"
+            className="lg:hidden rounded-full p-2 text-[#9A9A9A] transition-colors hover:bg-[var(--bg-hover)]"
           >
             {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
@@ -95,7 +95,7 @@ const Navbar = () => {
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="寻觅灵感..."
-                  className="w-full rounded-full bg-[#FAF7F2] py-2.5 pl-11 pr-5 text-sm text-[black] placeholder:text-[#9A9A9A] focus:outline-none"
+                  className="w-full rounded-full py-2.5 pl-11 pr-5 text-sm text-[black] placeholder:text-[#9A9A9A] focus:outline-none"
                 />
               </div>
             </form>
@@ -105,7 +105,7 @@ const Navbar = () => {
                   key={item.href}
                   href={item.href}
                   onClick={() => setIsMenuOpen(false)}
-                  className="block px-4 py-3 text-base font-medium text-[#9A9A9A] transition-colors hover:bg-[#FAF7F2] hover:text-[black] rounded-2xl"
+                  className="block px-4 py-3 text-base font-medium text-[#9A9A9A] transition-colors hover:bg-[var(--bg-hover)] hover:text-[black] rounded-2xl"
                 >
                   {item.label}
                 </Link>

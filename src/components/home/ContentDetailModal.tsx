@@ -153,7 +153,7 @@ export function ContentDetailModal({
         ) : content ? (
           <>
             {/* Left Side - Image Gallery */}
-            <div className="w-3/5 bg-[#FAF7F2] flex items-center justify-center p-8 relative">
+            <div className="w-3/5 flex items-center justify-center p-8 relative">
               {/* 图片数组：优先使用imageUrls，没有则使用imageUrl */}
               {(() => {
                 const images = Array.isArray(content.imageUrls) && content.imageUrls.length > 0
@@ -368,7 +368,7 @@ export function ContentDetailModal({
                     className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all ${
                       isLiked
                         ? 'text-[black] bg-[#E8E2DA] marble-texture'
-                        : 'text-[#9A9A9A] hover:bg-[#FAF7F2]'
+                        : 'text-[#9A9A9A] hover:bg-[var(--bg-hover)]'
                     }`}
                   >
                     <Heart
@@ -382,7 +382,7 @@ export function ContentDetailModal({
                     className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all ${
                       isBookmarked
                         ? 'text-[black] bg-[#E8E2DA] marble-texture'
-                        : 'text-[#9A9A9A] hover:bg-[#FAF7F2]'
+                        : 'text-[#9A9A9A] hover:bg-[var(--bg-hover)]'
                     }`}
                   >
                     <Bookmark
@@ -391,7 +391,7 @@ export function ContentDetailModal({
                     <span>收藏</span>
                   </button>
 
-                  <button className="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium text-[#9A9A9A] hover:bg-[#FAF7F2] transition-all">
+                  <button className="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium text-[#9A9A9A] hover:bg-[var(--bg-hover)] transition-all">
                     <Share2 className="w-4 h-4" />
                     <span>分享</span>
                   </button>
@@ -404,7 +404,7 @@ export function ContentDetailModal({
                     value={newComment}
                     onChange={(e) => setNewComment(e.target.value)}
                     placeholder="说点什么..."
-                    className="w-full px-4 py-3 pr-12 bg-[#FAF7F2] rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-[#E8E2DA] focus:bg-white transition-all"
+                    className="w-full px-4 py-3 pr-12 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-[#E8E2DA] focus:bg-white transition-all"
                   />
                   <button
                     type="submit"

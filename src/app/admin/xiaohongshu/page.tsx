@@ -28,7 +28,7 @@ export default function XiaohongshuSyncPage() {
 
   if (isAuthenticated === null) {
     return (
-      <div className="min-h-screen bg-[#FAF7F2] flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center">
         <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#E86A5A]"></div>
       </div>
     );

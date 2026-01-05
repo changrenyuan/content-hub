@@ -22,7 +22,7 @@ export function SearchClient() {
   };
 
   return (
-    <div className="min-h-screen bg-[#FAF7F2]">
+    <div className="min-h-screen">
       {/* Header */}
       <div className="sticky top-0 z-40 bg-white/90 backdrop-blur-lg border-b border-[#E8E2DA]">
         <div className="max-w-[1800px] mx-auto px-8 py-6">
@@ -35,7 +35,7 @@ export function SearchClient() {
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="搜索灵感..."
-                  className="w-full rounded-full bg-[#FAF7F2] py-2.5 pl-11 pr-12 text-sm text-[black] placeholder:text-[#9A9A9A] transition-all focus:outline-none focus:ring-2 focus:ring-[#E86A5A]"
+                  className="w-full rounded-full py-2.5 pl-11 pr-12 text-sm text-[black] placeholder:text-[#9A9A9A] transition-all focus:outline-none focus:ring-2 focus:ring-[#E86A5A]"
                 />
                 {searchQuery && (
                   <button

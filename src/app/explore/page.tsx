@@ -11,7 +11,7 @@ export default function ExplorePage() {
   const currentTag = params.tag as string;
 
   return (
-    <div className="min-h-screen bg-[#FAF7F2]">
+    <div className="min-h-screen">
       {/* Header */}
       <div className="sticky top-0 z-40 bg-white/80 backdrop-blur-lg border-b border-[#E8E2DA]">
         <div className="max-w-[1800px] mx-auto px-8 py-6">
@@ -34,10 +34,10 @@ export default function ExplorePage() {
                 <input
                   type="text"
                   placeholder="搜索灵感..."
-                  className="pl-11 pr-4 py-2.5 bg-[#FAF7F2] rounded-full text-sm text-[black] focus:outline-none focus:ring-2 focus:ring-[#E86A5A] w-64 placeholder:text-[#9A9A9A] transition-all"
+                  className="pl-11 pr-4 py-2.5 rounded-full text-sm text-[black] focus:outline-none focus:ring-2 focus:ring-[#E86A5A] w-64 placeholder:text-[#9A9A9A] transition-all"
                 />
               </div>
-              <button className="p-2.5 bg-[#FAF7F2] rounded-full hover:bg-[#F4DADA] transition-colors">
+              <button className="p-2.5 rounded-full hover:bg-[#F4DADA] transition-colors">
                 <Filter className="w-5 h-5 text-[#9A9A9A]" />
               </button>
             </div>
@@ -52,7 +52,7 @@ export default function ExplorePage() {
                   href={tag === '全部' ? '/explore' : `/explore?tag=${encodeURIComponent(tag)}`}
                   className="px-5 py-2 rounded-full text-sm font-medium transition-all hover:shadow-md"
                   style={{
-                    backgroundColor: tag === '全部' ? '#E86A5A' : '#FAF7F2',
+                    backgroundColor: tag === '全部' ? '#E86A5A' : 'var(--bg-hover)',
                     color: tag === '全部' ? '#FFFFFF' : '#9A9A9A',
                   }}
                 >

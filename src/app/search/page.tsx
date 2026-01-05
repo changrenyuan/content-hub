@@ -11,7 +11,7 @@ export default function SearchPage() {
 
 function SearchLoading() {
   return (
-    <div className="min-h-screen bg-[#FAF7F2]">
+    <div className="min-h-screen">
       <div className="sticky top-0 z-40 bg-white/90 backdrop-blur-lg border-b border-[#E8E2DA]">
         <div className="max-w-[1800px] mx-auto px-8 py-6">
           <div className="h-10 bg-[#E8E2DA] rounded-full animate-pulse" />

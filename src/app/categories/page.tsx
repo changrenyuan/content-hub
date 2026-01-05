@@ -8,7 +8,7 @@ export default async function CategoriesPage() {
   const categories = await categoryManager.getCategories();
 
   return (
-    <div className="min-h-screen bg-[#F5F5F7]">
+    <div className="min-h-screen">
       {/* Header */}
       <div className="sticky top-0 z-40 bg-white/80 backdrop-blur-lg border-b border-[#E8E2DA]">
         <div className="max-w-[1800px] mx-auto px-8 py-6">

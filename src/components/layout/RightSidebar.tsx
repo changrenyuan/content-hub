@@ -50,8 +50,8 @@ export function RightSidebar() {
               <div className="space-y-5">
                 {[1, 2, 3].map((i) => (
                   <div key={i} className="animate-pulse">
-                    <div className="h-3 bg-[#FAF7F2] rounded w-3/4 mb-2" />
-                    <div className="h-2 bg-[#FAF7F2] rounded w-1/2" />
+                    <div className="h-3 bg-[var(--bg-hover)] rounded w-3/4 mb-2" />
+                    <div className="h-2 bg-[var(--bg-hover)] rounded w-1/2" />
                   </div>
                 ))}
               </div>
@@ -68,7 +68,7 @@ export function RightSidebar() {
                       flex-shrink-0 w-7 h-7 rounded-lg flex items-center justify-center text-sm font-semibold
                       ${index < 3
                         ? 'bg-[#E8E2DA] text-[black] marble-texture'
-                        : 'bg-[#FAF7F2] text-[#9A9A9A]'
+                        : 'bg-[var(--bg-hover)] text-[#9A9A9A]'
                       }
                     `}>
                       {index + 1}
@@ -103,7 +103,7 @@ export function RightSidebar() {
                 key={tag}
                 href={`/explore?tag=${encodeURIComponent(tag)}`}
                 className="
-                  px-4 py-2 bg-[#FAF7F2] text-[#9A9A9A] rounded-full text-sm font-medium
+                  px-4 py-2 text-[#9A9A9A] rounded-full text-sm font-medium
                   hover:bg-[#E8E2DA] hover:text-[black] transition-all duration-300 hover:marble-texture
                 "
               >
@@ -144,7 +144,7 @@ export function RightSidebar() {
             type="email"
             placeholder="留下你的邮箱"
             className="
-              w-full px-5 py-3.5 bg-[#FAF7F2] rounded-xl text-sm text-[black]
+              w-full px-5 py-3.5 rounded-xl text-sm text-[black]
               focus:outline-none focus:ring-2 focus:ring-[#E86A5A]
               placeholder:text-[#9A9A9A] transition-all duration-300
             "

@@ -45,7 +45,7 @@ export function AdminLogin() {
   };
 
   return (
-    <div className="fixed inset-0 bg-[#FAF7F2] flex items-center justify-center p-4 z-50">
+    <div className="fixed inset-0 bg-[#F7F7F7] flex items-center justify-center p-4 z-50">
       <div className="w-full max-w-md">
         {/* Card */}
         <div className="bg-white rounded-3xl shadow-xl p-10">
@@ -75,7 +75,7 @@ export function AdminLogin() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="请输入密码"
-                  className="w-full px-4 py-3 bg-[#FAF7F2] rounded-xl text-[black] placeholder:text-[#9A9A9A] focus:outline-none focus:ring-2 focus:ring-[#E86A5A] transition-all"
+                  className="w-full px-4 py-3 rounded-xl text-[black] placeholder:text-[#9A9A9A] focus:outline-none focus:ring-2 focus:ring-[#E86A5A] transition-all"
                   disabled={loading}
                 />
                 <button

@@ -6,7 +6,7 @@ export const dynamic = 'force-dynamic';
 
 export default function Home() {
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#FAF7F2' }}>
+    <div className="min-h-screen">
       {/* Three-Column Layout - Golden Ratio: 15% : 62% : 23% */}
       <div className="max-w-[1800px] mx-auto px-8 py-12">
         <div className="flex gap-12">
