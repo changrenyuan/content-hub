@@ -62,6 +62,7 @@ export interface ContentFormData {
   sourceUrl: string;
   categoryId: string;
   tags: string[];
+  contentType: 'beauty' | 'serious' | 'featured';
   featured: boolean;
   published: boolean;
   sort: number;

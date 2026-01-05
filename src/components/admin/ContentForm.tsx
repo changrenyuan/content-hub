@@ -31,6 +31,7 @@ const ContentForm = ({
     sourceUrl: initialData.sourceUrl || '',
     categoryId: initialData.categoryId || '',
     tags: initialData.tags || [],
+    contentType: initialData.contentType || 'serious',
     featured: initialData.featured || false,
     published: initialData.published || false,
     sort: initialData.sort || 0,
@@ -350,8 +351,28 @@ const ContentForm = ({
           {/* Settings */}
           <div className="bg-white rounded-lg p-6 shadow-sm">
             <h2 className="text-lg font-medium text-gray-900 mb-4">设置</h2>
-            
+
             <div className="space-y-4">
+              {/* Content Type */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  内容类型
+                </label>
+                <select
+                  name="contentType"
+                  value={formData.contentType}
+                  onChange={handleInputChange}
+                  className="w-full max-w-xs rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 transition-colors focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20"
+                >
+                  <option value="serious">正经内容</option>
+                  <option value="beauty">生活美学</option>
+                  <option value="featured">精选内容</option>
+                </select>
+                <p className="mt-1 text-xs text-gray-500">
+                  正经内容显示在中间，生活美学显示在左侧
+                </p>
+              </div>
+
               {/* Featured */}
               <div className="flex items-center gap-3">
                 <input

@@ -11,16 +11,17 @@ export class ContentManager {
     return content;
   }
 
-  async getContents(options: { 
-    skip?: number; 
-    limit?: number; 
-    filters?: Partial<Pick<Content, 'id' | 'categoryId' | 'published' | 'featured'>>
+  async getContents(options: {
+    skip?: number;
+    limit?: number;
+    filters?: Partial<Pick<Content, 'id' | 'categoryId' | 'published' | 'featured' | 'contentType'>>
     search?: string;
     categoryId?: string;
     includeUnpublished?: boolean;
     orderBy?: 'createdAt' | 'updatedAt' | 'viewCount' | 'likeCount' | 'sort';
     orderDirection?: 'asc' | 'desc';
     featured?: boolean;
+    contentType?: 'beauty' | 'serious' | 'featured';
   } = {}): Promise<Content[]> {
     const { 
       skip = 0, 
@@ -54,6 +55,12 @@ export class ContentManager {
     }
     if (featured !== undefined) {
       conditions.push(eq(contents.featured, featured));
+    }
+    if (options.contentType) {
+      conditions.push(eq(contents.contentType, options.contentType));
+    }
+    if (filters.contentType !== undefined) {
+      conditions.push(eq(contents.contentType, filters.contentType));
     }
     if (search) {
       conditions.push(

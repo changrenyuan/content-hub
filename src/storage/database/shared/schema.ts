@@ -51,6 +51,7 @@ export const contents = pgTable(
     sourceUrl: varchar("source_url", { length: 500 }), // 原始链接
     categoryId: varchar("category_id", { length: 36 }),
     tags: jsonb("tags").$type<string[]>(), // 标签数组
+    contentType: varchar("content_type", { length: 20 }).default("serious").notNull(), // 内容类型：beauty(生活美学)/serious(正经)/featured(精选)
     author: varchar("author", { length: 100 }), // 作者名称
     authorAvatar: varchar("author_avatar", { length: 500 }), // 作者头像URL
     featured: boolean("featured").default(false).notNull(), // 是否精选
@@ -67,6 +68,7 @@ export const contents = pgTable(
     categoryIdIdx: index("contents_category_id_idx").on(table.categoryId),
     publishedIdx: index("contents_published_idx").on(table.published),
     featuredIdx: index("contents_featured_idx").on(table.featured),
+    contentTypeIdx: index("contents_content_type_idx").on(table.contentType),
   })
 );
 
@@ -132,6 +134,7 @@ export const insertContentSchema = createCoercedInsertSchema(contents).pick({
   sourceUrl: true,
   categoryId: true,
   tags: true,
+  contentType: true,
   author: true,
   authorAvatar: true,
   featured: true,
@@ -149,6 +152,7 @@ export const updateContentSchema = createCoercedInsertSchema(contents)
     sourceUrl: true,
     categoryId: true,
     tags: true,
+    contentType: true,
     author: true,
     authorAvatar: true,
     featured: true,

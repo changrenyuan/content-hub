@@ -98,6 +98,10 @@ export async function POST(request: NextRequest) {
           const author = item.author || item.authorName || item.nickname || item.user?.nickname || item.user?.name || '';
           const authorAvatar = item.authorAvatar || item.avatar || item.user?.avatar || item.user?.avatarUrl || '';
 
+          // 根据标签自动归类：有"生活美学"标签 → 左边(beauty)，其他 → 中间(serious)
+          const tags = Array.isArray(item.tags) ? item.tags : [];
+          const contentType = tags.includes('生活美学') ? 'beauty' : 'serious';
+
           // 如果启用了自动保存，也处理作者头像
           let processedAuthorAvatar = authorAvatar;
           if (autoSaveImages && authorAvatar) {
@@ -119,7 +123,8 @@ export async function POST(request: NextRequest) {
             imageUrls: allImageUrls.length > 0 ? allImageUrls : undefined,
             sourceUrl: item.sourceUrl || item.url || '',
             categoryId: item.categoryId || null,
-            tags: Array.isArray(item.tags) ? item.tags : [],
+            tags: tags,
+            contentType: contentType,
             author: author,
             authorAvatar: processedAuthorAvatar,
             published: item.published !== undefined ? item.published : true,

@@ -7,6 +7,7 @@ export async function GET(request: NextRequest) {
     const limit = parseInt(searchParams.get('limit') || '20');
     const sort = searchParams.get('sort') || 'recent';
     const category = searchParams.get('category');
+    const contentType = searchParams.get('contentType') as 'beauty' | 'serious' | 'featured' | undefined;
 
     let orderBy: 'createdAt' | 'updatedAt' | 'viewCount' | 'likeCount' | 'sort' = 'createdAt';
     let orderDirection: 'asc' | 'desc' = 'desc';
@@ -26,6 +27,7 @@ export async function GET(request: NextRequest) {
       orderBy,
       orderDirection,
       categoryId: category || undefined,
+      contentType: contentType,
     });
 
     return NextResponse.json(contents);
